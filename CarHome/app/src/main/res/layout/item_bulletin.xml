@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <TextView
+        android:id="@+id/item_bulletin_bull"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="试驾评测快报" />
+
+    <TextView
+        android:id="@+id/item_bulletin_if_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#9d9d9d"
+        android:text="播报结束" />
+
+    <TextView
+        android:id="@+id/item_bulletin_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_bulletin_bull"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="道路测试 马自达CX-4快报"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/item_bulletin_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/item_bulletin_if_end"
+        android:layout_marginRight="5dp"
+        android:text="1348833人浏览" />
+
+    <ImageView
+        android:id="@+id/item_bulletin_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_bulletin_title"
+        android:src="@mipmap/fild"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
+
+    <TextView
+        android:id="@+id/item_bulletin_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_bulletin_iv"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="2016-05-11" />
+</RelativeLayout>

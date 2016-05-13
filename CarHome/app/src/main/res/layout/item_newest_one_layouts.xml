@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/item_newest_one_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/fild" />
+
+    <TextView
+        android:id="@+id/item_newest_one_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/item_newest_one_iv"
+        android:text="或巴黎车展亮相 全新铃木速翼特假想图"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/item_newest_one_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_newest_one_title"
+        android:layout_toRightOf="@id/item_newest_one_iv"
+        android:text="2016-05-11"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentBottom="true"/>
+
+    <TextView
+        android:id="@+id/item_newest_one_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/item_newest_one_title"
+        android:text="61评论"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp">
+
+    <TextView
+        android:id="@+id/item_six_layouts_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="搭载YunOs for Car 荣威RX5官图发布"
+        android:layout_marginLeft="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/item_six_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_six_layouts_title"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/item_six_layouts_iv_one"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_six_layouts_title"
+            android:layout_weight="1"
+            android:src="@mipmap/fild"
+            />
+
+        <ImageView
+            android:id="@+id/item_six_layouts_iv_two"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_six_layouts_title"
+            android:layout_weight="1"
+            android:src="@mipmap/fild" />
+
+        <ImageView
+            android:id="@+id/item_six_layouts_iv_three"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_six_layouts_title"
+            android:layout_weight="1"
+            android:src="@mipmap/fild" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/item_six_layouts_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_six_layout"
+        android:text="2016-05-10"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/item_six_layouts_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_six_layout"
+        android:layout_alignParentRight="true"
+        android:text="156图片"
+        android:layout_marginRight="10dp"/>
+</RelativeLayout>

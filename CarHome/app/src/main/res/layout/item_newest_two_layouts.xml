@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+
+    <ImageView
+        android:id="@+id/item_newest_two_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/fild" />
+
+    <TextView
+        android:id="@+id/item_newest_two_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/item_newest_two_iv"
+        android:text="油耗，到底要听谁的？" />
+
+    <TextView
+        android:id="@+id/item_newest_two_typename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/item_newest_two_title"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/item_newest_two_iv"
+        android:text="说客" />
+
+    <TextView
+        android:id="@+id/item_newest_two_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/item_newest_two_title"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/item_newest_two_typename"
+        android:text="2016-05-11" />
+
+
+    <TextView
+        android:id="@+id/item_newest_two_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/item_newest_two_title"
+        android:text="51评论" />
+</RelativeLayout>
