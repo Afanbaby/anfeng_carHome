@@ -1,5 +1,6 @@
 package com.lanou3g.an.carhome.articleNestingFragment.video;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,13 +13,15 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.lanou3g.an.carhome.BuildConfig;
 import com.lanou3g.an.carhome.R;
+import com.lanou3g.an.carhome.articleNestingFragment.video.videoDetail.VideoDatailActivity;
 import com.lanou3g.an.carhome.beas.BaseFragment;
+import com.lanou3g.an.carhome.utils.DividerItemDecoration;
 
 /**
  * Created by anfeng on 16/5/9.
  * 推荐中的视频
  */
-public class VideoFragment extends BaseFragment {
+public class VideoFragment extends BaseFragment implements VideoAdapter.OnClickListenter {
     private RecyclerView recyclerView;
     private VideoAdapter videoAdapter;
 
@@ -31,6 +34,7 @@ public class VideoFragment extends BaseFragment {
     protected void initView() {
         recyclerView = bindView(R.id.fragment_video_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL_LIST));
         videoAdapter = new VideoAdapter(context);
     }
 
@@ -55,5 +59,14 @@ public class VideoFragment extends BaseFragment {
             }
         });
         requestQueue.add(stringRequest);
+        videoAdapter.setOnClickListenter(this);
+    }
+
+    @Override
+    public void onClick(int id) {
+        Intent intent = new Intent();
+        intent.putExtra("id", id);
+        intent.setClass(context, VideoDatailActivity.class);
+        startActivity(intent);
     }
 }

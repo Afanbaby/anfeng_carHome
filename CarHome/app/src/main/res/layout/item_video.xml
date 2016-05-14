@@ -8,13 +8,17 @@
         android:id="@+id/item_video_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
         android:src="@mipmap/fild" />
 
     <TextView
         android:id="@+id/item_video_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:layout_toRightOf="@id/item_video_iv"
+        android:paddingTop="5dp"
         android:text="《汽车洋葱圈》 概念车如何改变生活？" />
 
     <TextView
@@ -22,7 +26,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/item_video_title"
+        android:layout_marginLeft="5dp"
         android:layout_toRightOf="@id/item_video_iv"
+        android:paddingBottom="15dp"
         android:text="2016-05-12" />
 
     <TextView
@@ -31,5 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@id/item_video_iv"
-        android:text="747播放"/>
+        android:layout_marginRight="10dp"
+        android:text="747播放"
+        />
+
 </RelativeLayout>

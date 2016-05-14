@@ -15,8 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".articleNestingFragment.bulletin.bulletinDetail.BulletinDetailActivity"/>
         <activity android:name=".main.MainActivity"/>
         <activity android:name=".articleNestingFragment.newest.newestDetail.NewestDetailAvtivity"/>
+        <activity android:name=".articleNestingFragment.video.videoDetail.VideoDatailActivity"/>
     </application>
 
 </manifest>

@@ -23,6 +23,11 @@ public class BulletinAdapter extends RecyclerView.Adapter<BulletinAdapter.MyBull
     private Context context;
     private BulletinBean bulletinBean;
     private LayoutInflater layoutInflater;
+    private OnClickListener onClickListener;
+
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
 
     public BulletinAdapter(Context context) {
         this.context = context;
@@ -52,7 +57,7 @@ public class BulletinAdapter extends RecyclerView.Adapter<BulletinAdapter.MyBull
     }
 
     @Override
-    public void onBindViewHolder(MyBulletinView holder, int position) {
+    public void onBindViewHolder(MyBulletinView holder, final int position) {
         int type = getItemViewType(position);
         switch (type) {
             case 2:
@@ -64,6 +69,15 @@ public class BulletinAdapter extends RecyclerView.Adapter<BulletinAdapter.MyBull
                 holder.bulletinNumber.setText(bulletinBean.getResult().getList().get(position).getReviewcount() + "浏览");
                 holder.bulletinTime.setText(bulletinBean.getResult().getList().get(position).getCreatetime());
                 break;
+        }
+        if (onClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int id = bulletinBean.getResult().getList().get(position).getId();
+                    onClickListener.onClick(id);
+                }
+            });
         }
     }
 
@@ -88,7 +102,10 @@ public class BulletinAdapter extends RecyclerView.Adapter<BulletinAdapter.MyBull
     }
 
     public void getIntentData(ImageView view, String url) {
-        Log.d("BulletinAdapter", url);
         Picasso.with(context).load(url).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(view);
+    }
+
+    interface OnClickListener {
+        void onClick(int id);
     }
 }

@@ -1,7 +1,9 @@
 package com.lanou3g.an.carhome.articleNestingFragment.bulletin;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -9,7 +11,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.lanou3g.an.carhome.BuildConfig;
 import com.lanou3g.an.carhome.R;
+import com.lanou3g.an.carhome.articleNestingFragment.bulletin.bulletinDetail.BulletinDetailActivity;
 import com.lanou3g.an.carhome.beas.BaseFragment;
 import com.lanou3g.an.carhome.utils.DividerItemDecoration;
 
@@ -17,7 +21,7 @@ import com.lanou3g.an.carhome.utils.DividerItemDecoration;
  * Created by anfeng on 16/5/9.
  * 推荐中的快报
  */
-public class BulletinFragment extends BaseFragment {
+public class BulletinFragment extends BaseFragment implements BulletinAdapter.OnClickListener {
     private RecyclerView recyclerView;
     private BulletinAdapter bulletinAdapter;
 
@@ -32,6 +36,7 @@ public class BulletinFragment extends BaseFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         bulletinAdapter = new BulletinAdapter(context);
         recyclerView.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL_LIST));
+
     }
 
     @Override
@@ -53,5 +58,15 @@ public class BulletinFragment extends BaseFragment {
             }
         });
         requestQueue.add(stringRequest);
+        bulletinAdapter.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(int id) {
+        if (BuildConfig.DEBUG) Log.d("BulletinFragment", "**");
+        Intent intent = new Intent();
+        intent.putExtra("id",id);
+        intent.setClass(context, BulletinDetailActivity.class);
+        startActivity(intent);
     }
 }
