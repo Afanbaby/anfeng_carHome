@@ -21,6 +21,11 @@ public class JournalismAdapter extends RecyclerView.Adapter<JournalismAdapter.My
 
     private Context context;
     private JournalismBean journalismBean;
+    private OnClickListener onClickListener;
+
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
 
     public JournalismAdapter(Context context) {
         this.context = context;
@@ -40,12 +45,22 @@ public class JournalismAdapter extends RecyclerView.Adapter<JournalismAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         getIntentData(holder.journalismIv,journalismBean.getResult().getNewslist().get(position).getSmallpic());
         holder.journalismTitle.setText(journalismBean.getResult().getNewslist().get(position).getTitle());
         holder.journalismTime.setText(journalismBean.getResult().getNewslist().get(position).getTime());
         holder.journalismNumber.setText(journalismBean.getResult().getNewslist().get(position).getReplycount() + "评论");
+
+        if (onClickListener != null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int id = journalismBean.getResult().getNewslist().get(position).getId();
+                    onClickListener.onClick(id);
+                }
+            });
+        }
     }
 
     @Override
@@ -69,5 +84,9 @@ public class JournalismAdapter extends RecyclerView.Adapter<JournalismAdapter.My
 
     public void getIntentData(ImageView view,String url) {
         Picasso.with(context).load(url).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(view);
+    }
+
+    interface OnClickListener{
+        void onClick(int id);
     }
 }

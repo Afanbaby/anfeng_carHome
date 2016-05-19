@@ -11,8 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,6 +29,8 @@ import com.lanou3g.an.carhome.R;
 import com.lanou3g.an.carhome.articleNestingFragment.newest.newestDetail.NewestDetailAvtivity;
 import com.lanou3g.an.carhome.beas.BaseFragment;
 import com.lanou3g.an.carhome.utils.DividerItemDecoration;
+import com.lanou3g.an.carhome.utils.SwipeRefreshLoadingLayout;
+import com.lanou3g.an.carhome.utils.VolleySinge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,14 +44,13 @@ import it.sephiroth.android.library.picasso.Picasso;
  * Created by anfeng on 16/5/9.
  * 推荐中的最新
  */
-public class NewestFragment extends BaseFragment implements NewestAdapter.OnClickListener {
+public class NewestFragment extends BaseFragment implements SwipeRefreshLoadingLayout.OnLoadListener, SwipeRefreshLoadingLayout.OnRefreshListener {
 
-
-    private RecyclerViewHeader header;
-    private RecyclerView recyclerView;
+    private ListView listView;
     private NewestAdapter newestAdapter;
     private LayoutInflater inflater;
     private ViewPager mviewPager;
+    private SwipeRefreshLoadingLayout srff;
     /**
      * 用于小圆点图片
      */
@@ -78,21 +82,17 @@ public class NewestFragment extends BaseFragment implements NewestAdapter.OnClic
 
     @Override
     protected void initView() {
-        recyclerView = bindView(R.id.item_newest_bom_rv);
+        listView = bindView(R.id.item_newest_bom_lv);
 
         newestAdapter = new NewestAdapter(context);
-        header = RecyclerViewHeader.fromXml(context, R.layout.image_item);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL_LIST));
+        View headView = getLayoutInflater(null).inflate(R.layout.image_item, null);
+        listView.addHeaderView(headView);
         inflater = LayoutInflater.from(context);
-        header.attachTo(recyclerView);
+        srff = bindView(R.id.fragment_newsest_srff);
         mviewPager = bindView(R.id.myviewPager);
         dotLayout = bindView(R.id.dotLayout);
 
-
         /******/
-
         dotLayout.removeAllViews();
 
         //判断是否轮播
@@ -100,6 +100,8 @@ public class NewestFragment extends BaseFragment implements NewestAdapter.OnClic
             //如果是，就开启轮播切换
             startPlay();
         }
+        srff.setOnLoadListener(this);
+        srff.setOnRefreshListener(this);
     }
 
     @Override
@@ -115,7 +117,7 @@ public class NewestFragment extends BaseFragment implements NewestAdapter.OnClic
                 //初始化小圆点
                 initViewImage();
                 newestAdapter.setNewestBean(newestBean);
-                recyclerView.setAdapter(newestAdapter);
+                listView.setAdapter(newestAdapter);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -123,15 +125,16 @@ public class NewestFragment extends BaseFragment implements NewestAdapter.OnClic
             }
         });
         requestQueue.add(request);
-        newestAdapter.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(int id) {
-        Intent intent = new Intent();
-        intent.putExtra("webId", id);
-        intent.setClass(context, NewestDetailAvtivity.class);
-        startActivity(intent);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //当点击每一行的时候,将网站传过去
+                Intent intent = new Intent();
+                intent.putExtra("webId", id);
+                intent.setClass(context, NewestDetailAvtivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -139,7 +142,7 @@ public class NewestFragment extends BaseFragment implements NewestAdapter.OnClic
         dotViewList = new ArrayList<ImageView>();
         list = new ArrayList<ImageView>();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 6; i++) {
             ImageView dotView = new ImageView(context);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(new ActionBar.LayoutParams(
                     ActionBar.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -161,28 +164,38 @@ public class NewestFragment extends BaseFragment implements NewestAdapter.OnClic
             //上面是动态添加了四个小圆点
         }
 
+        String url1 = newestBean.getResult().getFocusimg().get(0).getImgurl();
+        String url2 = newestBean.getResult().getFocusimg().get(1).getImgurl();
+        String url3 = newestBean.getResult().getFocusimg().get(2).getImgurl();
+        String url4 = newestBean.getResult().getFocusimg().get(3).getImgurl();
+        String url5 = newestBean.getResult().getFocusimg().get(4).getImgurl();
+        String url6 = newestBean.getResult().getFocusimg().get(5).getImgurl();
 
         ImageView img1 = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
         ImageView img2 = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
         ImageView img3 = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
         ImageView img4 = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
+        ImageView img5 = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
+        ImageView img6 = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
+        Picasso.with(context).load(url1).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(img1);
+        Picasso.with(context).load(url2).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(img2);
+        Picasso.with(context).load(url3).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(img3);
+        Picasso.with(context).load(url4).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(img4);
+        Picasso.with(context).load(url5).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(img5);
+        Picasso.with(context).load(url6).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(img6);
 
-        img1.setBackgroundResource(R.mipmap.main_img1);
-        img2.setBackgroundResource(R.mipmap.main_img2);
-        img3.setBackgroundResource(R.mipmap.main_img3);
-        img4.setBackgroundResource(R.mipmap.main_img4);
+//        img1.setBackgroundResource(R.mipmap.main_img1);
+//        img2.setBackgroundResource(R.mipmap.main_img2);
+//        img3.setBackgroundResource(R.mipmap.main_img3);
+//        img4.setBackgroundResource(R.mipmap.main_img4);
         list.add(img1);
         list.add(img2);
         list.add(img3);
         list.add(img4);
+        list.add(img5);
+        list.add(img6);
 
         ImagePaperAdapter adapter = new ImagePaperAdapter((ArrayList<ImageView>) list);
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i <= newestBean.getResult().getFocusimg().size() - 1; i++) {
-            String url = newestBean.getResult().getFocusimg().get(0).getImgurl();
-            list.add(url);
-            adapter.setStringList(list);
-        }
         mviewPager.setAdapter(adapter);
         mviewPager.setCurrentItem(0);
         mviewPager.setOnPageChangeListener(new MyPageChangeListener());
@@ -198,6 +211,32 @@ public class NewestFragment extends BaseFragment implements NewestAdapter.OnClic
         scheduledExecutorService.scheduleAtFixedRate(new SlideShowTask(), 1, 4, TimeUnit.SECONDS);
         //根据他的参数说明，第一个参数是执行的任务(这里就是切换轮播图的任务)，第二个参数是第一次执行的间隔，第三个参数是执行任务的周期；
     }
+
+    @Override
+    public void onLoad() {
+        srff.setRefreshing(false);
+    }
+
+    @Override
+    public void onRefresh() {
+        Toast.makeText(context, "下拉刷新", Toast.LENGTH_SHORT).show();
+        srff.setRefreshing(false);
+        VolleySinge.addRequest("http://app.api.autohome.com.cn/autov4.2.5/news/newslist-a2-pm1-v4.2.5-c0-nt0-p1-s30-l0.html",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Gson gson = new Gson();
+                        NewestBean newestBean = gson.fromJson(response, NewestBean.class);
+                        newestAdapter.setNewestBean(newestBean);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+    }
+
 
     /**
      * 执行轮播图切换任务

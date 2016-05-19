@@ -18,7 +18,7 @@ import com.lanou3g.an.carhome.articleNestingFragment.RefitFragment;
 import com.lanou3g.an.carhome.articleNestingFragment.ShoppingFragment;
 import com.lanou3g.an.carhome.articleNestingFragment.TechnologyFragment;
 import com.lanou3g.an.carhome.articleNestingFragment.TravelsFragment;
-import com.lanou3g.an.carhome.articleNestingFragment.UseCarFragment;
+import com.lanou3g.an.carhome.articleNestingFragment.usecar.UseCarFragment;
 import com.lanou3g.an.carhome.articleNestingFragment.video.VideoFragment;
 import com.lanou3g.an.carhome.beas.BaseFragment;
 
@@ -55,16 +55,16 @@ public class ArticleFragment extends BaseFragment {
         fragmentList.add(new BulletinFragment());
         fragmentList.add(new VideoFragment());
         fragmentList.add(new JournalismFragment());
-        fragmentList.add(new CultureFragment());
         fragmentList.add(new EvaluatingFragment());
-        fragmentList.add(new LobbyistsFragment());
-        fragmentList.add(new OriginalVideoFragment());
-        fragmentList.add(new QuotationFragment());
-        fragmentList.add(new RefitFragment());
         fragmentList.add(new ShoppingFragment());
-        fragmentList.add(new TechnologyFragment());
-        fragmentList.add(new TravelsFragment());
+        fragmentList.add(new QuotationFragment());
         fragmentList.add(new UseCarFragment());
+        fragmentList.add(new TechnologyFragment());
+        fragmentList.add(new CultureFragment());
+        fragmentList.add(new RefitFragment());
+        fragmentList.add(new TravelsFragment());
+        fragmentList.add(new OriginalVideoFragment());
+        fragmentList.add(new LobbyistsFragment());
 
         articleAdapter.setFragmentList(fragmentList);
         vp.setAdapter(articleAdapter);

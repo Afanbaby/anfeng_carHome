@@ -46,30 +46,27 @@ public class BulletinAdapter extends RecyclerView.Adapter<BulletinAdapter.MyBull
 
     @Override
     public MyBulletinView onCreateViewHolder(ViewGroup parent, int viewType) {
-        MyBulletinView myBulletinView = null;
-        switch (viewType) {
-            case 2:
-                View bulletinView = layoutInflater.inflate(R.layout.item_bulletin, null);
-                myBulletinView = new MyBulletinView(bulletinView);
-                break;
-        }
-        return myBulletinView;
+        RecyclerView.ViewHolder viewHolder = null;
+        View view = layoutInflater.inflate(R.layout.item_bulletin, null);
+        viewHolder = new MyBulletinView(view);
+        return (MyBulletinView) viewHolder;
     }
 
     @Override
     public void onBindViewHolder(MyBulletinView holder, final int position) {
         int type = getItemViewType(position);
-        switch (type) {
-            case 2:
-                getIntentData(holder.bulletinIv, bulletinBean.getResult().getList().get(position).getBgimage());
-                holder.bulletinBull.setText(bulletinBean.getResult().getList().get(position).getTypename());
-                //是否播报结束
-                //holder.bulletinIfEnd.setText(bulletinBean.getResult().getList().get(position).getTypename());
-                holder.bulletinTitle.setText(bulletinBean.getResult().getList().get(position).getTitle());
-                holder.bulletinNumber.setText(bulletinBean.getResult().getList().get(position).getReviewcount() + "浏览");
-                holder.bulletinTime.setText(bulletinBean.getResult().getList().get(position).getCreatetime());
-                break;
+        if (type == 2) {
+            //是否播报结束
+            holder.bulletinIfEnd.setText("播报结束");
+        } else {
+            holder.bulletinIfEnd.setText("播报中");
         }
+        getIntentData(holder.bulletinIv, bulletinBean.getResult().getList().get(position).getBgimage());
+        holder.bulletinBull.setText(bulletinBean.getResult().getList().get(position).getTypename());
+        holder.bulletinTitle.setText(bulletinBean.getResult().getList().get(position).getTitle());
+        holder.bulletinNumber.setText(bulletinBean.getResult().getList().get(position).getReviewcount() + "浏览");
+        holder.bulletinTime.setText(bulletinBean.getResult().getList().get(position).getCreatetime());
+
         if (onClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

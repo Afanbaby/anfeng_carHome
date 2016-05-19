@@ -7,12 +7,12 @@
     <RelativeLayout
         android:id="@+id/slideView"
         android:layout_width="match_parent"
-        android:layout_height="160.0dip">
+        android:layout_height="160dp">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/myviewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:id="@+id/dotLayout"

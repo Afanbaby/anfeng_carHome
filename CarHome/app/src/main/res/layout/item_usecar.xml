@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/item_usecar_iv"
+        android:layout_width="100dp"
+        android:layout_height="76dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/fild" />
+
+    <TextView
+        android:id="@+id/item_usecar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/item_usecar_iv"
+        android:text="保养项目少/周期长 新明锐用车成本解析" />
+
+    <TextView
+        android:id="@+id/item_usecar_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_usecar_title"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/item_usecar_iv"
+        android:text="2016-05-14"
+        android:layout_marginTop="40dp"/>
+
+    <TextView
+        android:id="@+id/item_usecar_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/item_usecar_title"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="5dp"
+        android:text="115评论" />
+</RelativeLayout>

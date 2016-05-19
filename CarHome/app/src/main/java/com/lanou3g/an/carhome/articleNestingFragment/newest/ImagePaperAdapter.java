@@ -16,13 +16,6 @@ import java.util.List;
 public class ImagePaperAdapter extends PagerAdapter {
 
 	private ArrayList<ImageView>list;
-	private List<String> stringList;
-
-	public void setStringList(List<String> stringList) {
-		this.stringList = stringList;
-		notifyDataSetChanged();
-	}
-
 
 	public ImagePaperAdapter(ArrayList<ImageView> list) {
 		// TODO Auto-generated constructor stub
@@ -50,8 +43,7 @@ public class ImagePaperAdapter extends PagerAdapter {
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
 		// TODO Auto-generated method stub
-		String url = stringList.get(position);
-		if (BuildConfig.DEBUG) Log.d("ImagePaperAdapter", url);
+
 		ImageView view = list.get(position) ;
 		ViewParent vp =  view.getParent();
 		if(vp != null){

@@ -18,10 +18,10 @@
             android:layout_height="wrap_content"
             app:tabMode="scrollable" />
         <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/sousou"
-        android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/sousou"
+            android:padding="10dp"
         />
     </LinearLayout>
     <TextView

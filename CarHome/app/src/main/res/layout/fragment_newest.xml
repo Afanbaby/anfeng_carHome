@@ -3,11 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/item_newest_bom_rv"
+    <com.lanou3g.an.carhome.utils.SwipeRefreshLoadingLayout
+        android:id="@+id/fragment_newsest_srff"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
-
+        <ListView
+            android:id="@+id/item_newest_bom_lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.lanou3g.an.carhome.utils.SwipeRefreshLoadingLayout>
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.lanou3g.an.carhome.articleNestingFragment.journalism;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,14 +13,16 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.lanou3g.an.carhome.BuildConfig;
 import com.lanou3g.an.carhome.R;
+import com.lanou3g.an.carhome.articleNestingFragment.journalism.journalismDetail.JournalismDetailActivity;
 import com.lanou3g.an.carhome.beas.BaseFragment;
 import com.lanou3g.an.carhome.utils.DividerItemDecoration;
+
 
 /**
  * Created by anfeng on 16/5/9.
  * 推荐中的新闻
  */
-public class JournalismFragment extends BaseFragment {
+public class JournalismFragment extends BaseFragment implements JournalismAdapter.OnClickListener {
     private RecyclerView recyclerView;
     private JournalismBean journalismBean;
     private JournalismAdapter journalismAdapter;
@@ -35,6 +38,7 @@ public class JournalismFragment extends BaseFragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL_LIST));
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         journalismAdapter = new JournalismAdapter(context);
+        journalismAdapter.setOnClickListener(this);
     }
 
     @Override
@@ -59,5 +63,13 @@ public class JournalismFragment extends BaseFragment {
         });
         requestQueue.add(stringRequest);
 
+    }
+
+    @Override
+    public void onClick(int id) {
+        Intent intent = new Intent();
+        intent.putExtra("id",id);
+        intent.setClass(context, JournalismDetailActivity.class);
+        startActivity(intent);
     }
 }

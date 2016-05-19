@@ -3,6 +3,7 @@
     package="com.lanou3g.an.carhome">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:name=".main.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_carhome"
         android:label="@string/app_name"
@@ -11,7 +12,6 @@
         <activity android:name=".welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -19,6 +19,8 @@
         <activity android:name=".main.MainActivity"/>
         <activity android:name=".articleNestingFragment.newest.newestDetail.NewestDetailAvtivity"/>
         <activity android:name=".articleNestingFragment.video.videoDetail.VideoDatailActivity"/>
+        <activity android:name=".articleNestingFragment.journalism.journalismDetail.JournalismDetailActivity"/>
+        <activity android:name=".articleNestingFragment.usecar.usecarDetail.UseCarDetailActivity"/>
     </application>
 
 </manifest>
