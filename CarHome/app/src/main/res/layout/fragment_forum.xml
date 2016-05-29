@@ -13,19 +13,410 @@
             android:id="@+id/forum_tab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zoo_dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="@dimen/ten_dp"
             android:src="@mipmap/sousou" />
     </LinearLayout>
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:checked="true"
+                android:text="@string/all"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="媳妇当车模"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="美人计"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="论坛名人"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="论坛讲师"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="汽车之家十年"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="精挑细选"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="现身说法"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="高端阵地"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="电动车"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="汇买车"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="行车点评"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="超级试驾员"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="海外购车"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="经典老车"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="妹子选车"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="优惠购车"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="原创大片"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="顶配风采"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="改装有理"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="养车有道"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="首发阵营"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="历史选题"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="新车直播"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="摩友天地"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="蜜月之旅"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="甜蜜婚礼"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="摄影课堂"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="车友聚会"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="单车部落"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="杂谈俱乐部"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="华北游记"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="西南游记"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="东北游记"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="西北游记"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="华中游记"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="华南游记"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio38"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="华东游记"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio39"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="港澳台游记"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="海外游记"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+
+            <RadioButton
+                android:id="@+id/fragment_forum_radio41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/five_dp"
+                android:button="@null"
+                android:text="沧海遗珠"
+                android:textColor="@drawable/forum_radio_text_color_selector" />
+        </RadioGroup>
+    </HorizontalScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/one_dp"
+        android:background="@color/colorGray" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/forum_vp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/zoo_dp"
+        android:layout_weight="1" />
+
 </LinearLayout>

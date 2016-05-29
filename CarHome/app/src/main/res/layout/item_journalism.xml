@@ -5,36 +5,35 @@
 
     <ImageView
         android:id="@+id/item_journalism_iv"
-        android:layout_width="100dp"
-        android:layout_height="76dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="@dimen/One_hundred_dp"
+        android:layout_height="@dimen/seventy_six_dp"
+        android:layout_margin="@dimen/ten_dp"
         android:background="@mipmap/fild" />
 
     <TextView
         android:id="@+id/item_journalism_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/five_dp"
+        android:layout_marginTop="@dimen/ten_dp"
         android:layout_toRightOf="@id/item_journalism_iv"
-        android:text="两款车型 江铃福特途睿欧5月19日上市" />
+        android:text="@string/test_text" />
 
     <TextView
         android:id="@+id/item_journalism_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/item_journalism_title"
+        android:layout_alignBottom="@id/item_journalism_iv"
+        android:layout_marginLeft="@dimen/five_dp"
         android:layout_toRightOf="@id/item_journalism_iv"
-        android:text="2016-05-14" />
+        android:text="@string/test_text" />
 
     <TextView
         android:id="@+id/item_journalism_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/item_journalism_time"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/item_journalism_title"
-        android:layout_toRightOf="@id/item_journalism_time"
-        android:text="115评论" />
+        android:layout_marginRight="@dimen/five_dp"
+        android:text="@string/test_text" />
 </RelativeLayout>

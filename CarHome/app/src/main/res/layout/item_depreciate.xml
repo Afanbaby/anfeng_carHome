@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_price_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/item_price_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ten_dp"
+                android:layout_toRightOf="@id/item_price_iv"
+                android:text="@string/test_text" />
+
+            <TextView
+                android:id="@+id/item_price_price_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_price_title_tv"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:layout_marginTop="@dimen/two_ten_dp"
+                android:layout_toRightOf="@id/item_price_iv"
+                android:text="@string/test_text" />
+
+            <TextView
+                android:id="@+id/item_price_price_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_price_title_tv"
+                android:layout_marginLeft="@dimen/ten_dp"
+                android:layout_marginTop="@dimen/twenty_five_dp"
+                android:layout_toRightOf="@id/item_price_price_one"
+                android:text="@string/test_text"
+                android:textSize="@dimen/ten_sp"
+                />
+
+            <TextView
+                android:id="@+id/item_price_price_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/item_price_title_tv"
+                android:layout_marginRight="@dimen/five_dp"
+                android:layout_marginTop="@dimen/twenty_five_dp"
+                android:text="@string/test_text" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/item_deprecite_localtion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/five_dp"
+            android:layout_marginLeft="@dimen/five_dp"
+            android:text="@string/test_text" />
+
+        <TextView
+            android:id="@+id/item_deprecite_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ten_dp"
+            android:text="@string/test_text" />
+
+        <TextView
+            android:id="@+id/item_deprecite_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ten_dp"
+            android:text="@string/test_text" />
+
+        <TextView
+            android:id="@+id/item_deprecite_sell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ten_dp"
+            android:text="@string/test_text" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/one_dp"
+        android:background="@color/color_gray_one" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/five_dp"
+        android:layout_marginTop="@dimen/five_dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/item_deprecite_buy"
+            android:layout_width="@dimen/zoo_dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/five_dp"
+            android:layout_weight="1"
+            android:background="@drawable/textview_border"
+            android:gravity="center"
+            android:padding="@dimen/five_dp"
+            android:text="@string/Car_buying_calculation"
+            android:textColor="@color/colorBule" />
+
+        <TextView
+            android:id="@+id/item_deprecite_call"
+            android:layout_width="@dimen/zoo_dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/twenty_five_dp"
+            android:layout_weight="1"
+            android:background="@drawable/textview_border"
+            android:gravity="center"
+            android:padding="@dimen/five_dp"
+            android:text="@string/Call_immediately"
+            android:textColor="@color/colorBule" />
+
+        <TextView
+            android:id="@+id/item_deprecite_ask"
+            android:layout_width="@dimen/zoo_dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/twenty_five_dp"
+            android:layout_weight="1"
+            android:background="@drawable/textview_border"
+            android:gravity="center"
+            android:padding="@dimen/five_dp"
+            android:text="@string/Inquiry_base_price"
+            android:textColor="@color/colorBule"
+            android:layout_marginRight="@dimen/five_dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/five_dp"
+        android:layout_marginTop="@dimen/five_dp"
+        android:background="@color/color_gray_one" />
+
+</LinearLayout>

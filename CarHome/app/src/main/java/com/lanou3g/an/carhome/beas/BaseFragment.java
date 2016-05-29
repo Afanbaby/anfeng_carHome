@@ -15,7 +15,7 @@ public abstract class BaseFragment extends Fragment {
     protected Context context;
 
     /**
-     *  context 从依附的Activity 上获取 context 对象
+     * context 从依附的Activity 上获取 context 对象
      */
     @Override
     public void onAttach(Context context) {
@@ -27,8 +27,9 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(setLayout(),container,false);
+        return inflater.inflate(setLayout(), container, false);
     }
+
     public abstract int setLayout();
 
     //初始化组件
@@ -37,6 +38,7 @@ public abstract class BaseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initView();
     }
+
     protected abstract void initView();
 
 
@@ -46,9 +48,10 @@ public abstract class BaseFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         initData();
     }
+
     protected abstract void initData();
 
-    protected <T extends View> T bindView(int id){
+    protected <T extends View> T bindView(int id) {
         return (T) getView().findViewById(id);
     }
 }

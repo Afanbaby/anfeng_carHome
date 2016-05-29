@@ -20,6 +20,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by anfeng on 16/5/9.
  */
@@ -29,6 +31,7 @@ public class WelcomeActivity extends BaseActivity {
     private ImageView welcomeIV;
     private CountDownTimer time;
     private InputStream is;
+
 
     @Override
     protected int getLayout() {
@@ -71,6 +74,7 @@ public class WelcomeActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         time.cancel();
+        JPushInterface.onPause(this);
     }
 
     //重新启动
@@ -99,7 +103,7 @@ public class WelcomeActivity extends BaseActivity {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 try {
                     is.close();
                     connection.disconnect();
@@ -116,5 +120,12 @@ public class WelcomeActivity extends BaseActivity {
             welcomeIV.setImageBitmap(bitmap);
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
+    }
+
 
 }

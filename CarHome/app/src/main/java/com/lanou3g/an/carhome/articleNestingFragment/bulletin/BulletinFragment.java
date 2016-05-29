@@ -25,22 +25,25 @@ import com.lanou3g.an.carhome.BuildConfig;
 import com.lanou3g.an.carhome.R;
 import com.lanou3g.an.carhome.articleNestingFragment.bulletin.bulletinDetail.BulletinDetailActivity;
 import com.lanou3g.an.carhome.beas.BaseFragment;
+import com.lanou3g.an.carhome.eventBus.DataBeanName;
 import com.lanou3g.an.carhome.main.MainActivity;
 import com.lanou3g.an.carhome.utils.DividerItemDecoration;
 import com.lanou3g.an.carhome.utils.SwipeRefreshLoadingLayout;
 import com.lanou3g.an.carhome.utils.VolleySinge;
 
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
+import de.greenrobot.event.ThreadMode;
+
 /**
  * Created by anfeng on 16/5/9.
  * 推荐中的快报
  */
-public class BulletinFragment extends BaseFragment implements BulletinAdapter.OnClickListener, View.OnClickListener, SwipeRefreshLoadingLayout.OnLoadListener, SwipeRefreshLoadingLayout.OnRefreshListener {
+public class BulletinFragment extends BaseFragment implements BulletinAdapter.OnClickListener, View.OnClickListener {
     private RecyclerView recyclerView;
     private BulletinAdapter bulletinAdapter;
     private LinearLayout layoutBrand, layoutCategory;
     private static final String CLOSE_DRAWER = "com.lanou3g.an.carhome.CLOSEBROADCAST";
-    private SwipeRefreshLoadingLayout srff;
-    private GetNameBroadcast getNameBroadcast;
     private TextView allBrand, allGrade;
 
     @Override
@@ -58,15 +61,8 @@ public class BulletinFragment extends BaseFragment implements BulletinAdapter.On
         layoutCategory = bindView(R.id.fragment_bulletin_category);
         layoutBrand.setOnClickListener(this);
         layoutCategory.setOnClickListener(this);
-        srff = bindView(R.id.srff);
         allBrand = bindView(R.id.fragment_bulletin_all_brand);
         allGrade = bindView(R.id.fragment_bulletin_all_grade);
-
-        //动态注册广播
-        getNameBroadcast = new GetNameBroadcast();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction("com.lanou3g.an.carhome.TYPENAME");
-        context.registerReceiver(getNameBroadcast, filter);
     }
 
     @Override
@@ -88,13 +84,10 @@ public class BulletinFragment extends BaseFragment implements BulletinAdapter.On
                     }
                 });
         bulletinAdapter.setOnClickListener(this);
-        srff.setOnLoadListener(this);
-        srff.setOnRefreshListener(this);
     }
 
     @Override
     public void onClick(int id) {
-        if (BuildConfig.DEBUG) Log.d("BulletinFragment", "**");
         Intent intent = new Intent();
         intent.putExtra("id", id);
         intent.setClass(context, BulletinDetailActivity.class);
@@ -118,76 +111,19 @@ public class BulletinFragment extends BaseFragment implements BulletinAdapter.On
     }
 
 
-    @Override
-    public void onLoad() {
-        Toast.makeText(context, "上拉加载", Toast.LENGTH_SHORT).show();
-        srff.setRefreshing(false);
-        VolleySinge.addRequest("http://app.api.autohome.com.cn/autov5.0.0/news/fastnewslist-pm2-b0-l0-s20-lastid0.json", BulletinBean.class, new Response.Listener<BulletinBean>() {
-            @Override
-            public void onResponse(BulletinBean response) {
-
-                Log.d("BulletinFragment", "response:" + response);
-                bulletinAdapter.setBulletinBean(response);
-                recyclerView.setAdapter(bulletinAdapter);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-    }
-
-    @Override
-    public void onRefresh() {
-        Toast.makeText(context, "下拉刷新", Toast.LENGTH_SHORT).show();
-        srff.setRefreshing(false);
-        VolleySinge.addRequest("http://app.api.autohome.com.cn/autov5.0.0/news/fastnewslist-pm2-b0-l0-s20-lastid0.json", BulletinBean.class, new Response.Listener<BulletinBean>() {
-            @Override
-            public void onResponse(BulletinBean response) {
-                bulletinAdapter.setBulletinBean(response);
-                recyclerView.setAdapter(bulletinAdapter);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-    }
-
-    //当接收到广播的时候
-    class GetNameBroadcast extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String name = intent.getStringExtra("name");
-            int nameType = intent.getIntExtra("nameType", 0);
-            if (nameType == 1) {
-                allBrand.setText(name);
-                VolleySinge.addRequest("http://app.api.autohome.com.cn/autov5.0.0/news/fastnewslist-pm2-b0-l0-s20-lastid0.json",
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Gson gson = new Gson();
-                                BulletinBean bulletinBean = gson.fromJson(response, BulletinBean.class);
-                                Log.d("GetNameBroadcast", "还不会做呢");
-
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-
-                            }
-                        });
-            } else {
-                allGrade.setText(name);
-            }
+    //接收Eventbus发送过来的值
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void getDataBeanName(DataBeanName dataBeanName) {
+        if (dataBeanName.getName() != null) {
+            String name = dataBeanName.getName();
+            allBrand.setText(name);
         }
     }
+
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        context.unregisterReceiver(getNameBroadcast);
+        EventBus.getDefault().unregister(context);
     }
 }

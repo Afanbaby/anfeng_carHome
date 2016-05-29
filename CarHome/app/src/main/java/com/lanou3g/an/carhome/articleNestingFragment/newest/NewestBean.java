@@ -1,11 +1,12 @@
 package com.lanou3g.an.carhome.articleNestingFragment.newest;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by anfeng on 16/5/10.
  */
-public class NewestBean {
+public class NewestBean  {
 
 
     /**
@@ -334,7 +335,7 @@ public class NewestBean {
             }
         }
 
-        public static class NewslistBean {
+        public static class NewslistBean implements Serializable {
             private int id;
             private String title;
             private int mediatype;

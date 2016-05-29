@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="colorGray">#999999</color>
+    <color name="color_gray_one">#cccccc</color>
+    <color name="colorBule">#3366CC</color>
+    <color name="colorRed">#CC0000</color>
+    <color name="colorbule">#99FFFF</color>
+    <color name="colorgray">#6699FF</color>
+    <color name="colorBalck">#000000</color>
+    <color name="colorWhilt">#ffffff</color>
+
 </resources>

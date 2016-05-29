@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/five_dp"
+        android:layout_marginLeft="@dimen/five_dp"
+        android:layout_marginTop="@dimen/five_dp"
+        android:background="@color/colorWhilt"
+        android:text="@string/Brand_boutique" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textview_border"
+        android:orientation="horizontal">
+        <!--1-->
+        <LinearLayout
+            android:layout_width="@dimen/zoo_dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/textview_border"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/item_sale_six_one_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/one_dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/item_sale_six_one_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:text="@string/test_text" />
+
+            <TextView
+                android:id="@+id/item_sale_six_one_small_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/test_text" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/item_sale_six_one_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/test_text"
+                    android:textColor="@color/colorRed" />
+
+                <TextView
+                    android:id="@+id/item_sale_six_one_small_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/five_dp"
+                    android:layout_marginLeft="@dimen/five_dp"
+                    android:layout_marginTop="@dimen/five_dp"
+                    android:text="@string/test_text"
+                    android:textSize="@dimen/ten_sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--2-->
+        <LinearLayout
+            android:layout_width="@dimen/zoo_dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/textview_border"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/item_sale_six_two_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/one_dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/item_sale_six_two_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:text="@string/test_text" />
+
+            <TextView
+                android:id="@+id/item_sale_six_two_small_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/test_text" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/item_sale_six_two_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/test_text"
+                    android:textColor="@color/colorRed" />
+
+                <TextView
+                    android:id="@+id/item_sale_six_two_small_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/five_dp"
+                    android:layout_marginLeft="@dimen/five_dp"
+                    android:layout_marginTop="@dimen/five_dp"
+                    android:text="@string/test_text"
+                    android:textSize="@dimen/ten_sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--3-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textview_border"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="@dimen/zoo_dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/textview_border"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/item_sale_six_three_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/one_dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/item_sale_six_three_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:text="@string/test_text" />
+
+            <TextView
+                android:id="@+id/item_sale_six_three_small_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/test_text" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/item_sale_six_three_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/test_text"
+                    android:textColor="@color/colorRed" />
+
+                <TextView
+                    android:id="@+id/item_sale_six_three_small_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/five_dp"
+                    android:layout_marginLeft="@dimen/five_dp"
+                    android:layout_marginTop="@dimen/five_dp"
+                    android:text="@string/test_text"
+                    android:textSize="@dimen/ten_sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--4-->
+        <LinearLayout
+            android:layout_width="@dimen/zoo_dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/textview_border"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/item_sale_six_four_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/one_dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/item_sale_six_four_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:text="标题" />
+
+            <TextView
+                android:id="@+id/item_sale_six_four_small_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="小标题" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/item_sale_six_four_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="价格"
+                    android:textColor="@color/colorRed" />
+
+                <TextView
+                    android:id="@+id/item_sale_six_four_small_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/five_dp"
+                    android:layout_marginLeft="@dimen/five_dp"
+                    android:layout_marginTop="@dimen/five_dp"
+                    android:text="价格"
+                    android:textSize="@dimen/ten_sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ten_dp"
+        android:background="@color/colorGray" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/five_dp"
+        android:layout_marginLeft="@dimen/five_dp"
+        android:layout_marginTop="@dimen/five_dp"
+        android:text="@string/List_of_goods" />
+</LinearLayout>

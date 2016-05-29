@@ -1,11 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="@dimen/zoo_dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorGray"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/five_dp">
+
+            <TextView
+                android:id="@+id/fragment_depreciate_brand_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/brand" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bulletin_page_selsctor" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zoo_dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorGray"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/five_dp">
+
+            <TextView
+                android:id="@+id/fragment_depreciate_brand_price_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bulletin_page_selsctor" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zoo_dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorGray"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/five_dp">
+
+            <TextView
+                android:id="@+id/fragment_depreciate_brand_level_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/level" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bulletin_page_selsctor" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zoo_dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorGray"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/five_dp">
+
+            <TextView
+                android:id="@+id/fragment_depreciate_sort_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sort" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bulletin_page_selsctor" />
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="@dimen/one_dp"
+        android:background="@color/colorBalck" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="降价"/>
+        android:layout_marginLeft="@dimen/five_dp"
+        android:layout_marginTop="@dimen/ten_dp">
+
+        <ImageView
+            android:id="@+id/fragment_depreciate_one_iv"
+            android:layout_width="@dimen/one_hundred_and_twenty"
+            android:layout_height="@dimen/Eighty_dp"
+            android:src="@mipmap/kadingche" />
+
+        <TextView
+            android:id="@+id/fragment_depreciate_one_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ten_dp"
+            android:layout_toRightOf="@id/fragment_depreciate_one_iv"
+            android:text="@string/test_text" />
+
+
+        <TextView
+            android:id="@+id/fragment_depreciate_one_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fragment_depreciate_one_title"
+            android:layout_marginLeft="@dimen/ten_dp"
+            android:layout_marginTop="@dimen/twenty_five_dp"
+            android:layout_toRightOf="@id/fragment_depreciate_one_iv"
+            android:text="@string/test_text" />
+
+
+        <TextView
+            android:id="@+id/fragment_depreciate_one_number_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/fragment_depreciate_one_title"
+            android:layout_marginRight="@dimen/five_dp"
+            android:background="@color/colorRed"
+            android:text="@string/test_text"
+            android:textColor="@color/colorWhilt" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_depreciate_rv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zoo_dp"
+        android:layout_weight="1" />
+
 </LinearLayout>

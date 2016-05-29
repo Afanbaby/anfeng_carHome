@@ -3,7 +3,6 @@ package com.lanou3g.an.carhome.articleNestingFragment.journalism;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -11,11 +10,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.lanou3g.an.carhome.BuildConfig;
+import com.lanou3g.an.carhome.Collection;
 import com.lanou3g.an.carhome.R;
-import com.lanou3g.an.carhome.articleNestingFragment.journalism.journalismDetail.JournalismDetailActivity;
+import com.lanou3g.an.carhome.article.WebViewActivity;
 import com.lanou3g.an.carhome.beas.BaseFragment;
 import com.lanou3g.an.carhome.utils.DividerItemDecoration;
+import com.lanou3g.an.carhome.utils.VolleySinge;
 
 
 /**
@@ -44,32 +44,35 @@ public class JournalismFragment extends BaseFragment implements JournalismAdapte
     @Override
     protected void initData() {
 
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(
-                "http://app.api.autohome.com.cn/autov5.0.0/news/newslist-pm1-c0-nt1-p1-s30-l0.json"
-                , new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Gson gson = new Gson();
-                journalismBean = gson.fromJson(response, JournalismBean.class);
-                journalismAdapter.setJournalismBean(journalismBean);
-                recyclerView.setAdapter(journalismAdapter);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+        VolleySinge.addRequest("http://app.api.autohome.com.cn/autov5.0.0/news/newslist-pm1-c0-nt1-p1-s30-l0.json", JournalismBean.class,
+                new Response.Listener<JournalismBean>() {
+                    @Override
+                    public void onResponse(JournalismBean response) {
+                        journalismBean = response;
+                        journalismAdapter.setJournalismBean(response);
+                        recyclerView.setAdapter(journalismAdapter);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
-            }
-        });
-        requestQueue.add(stringRequest);
+                    }
+                });
 
     }
 
     @Override
-    public void onClick(int id) {
+    public void onClick(int id, int position) {
         Intent intent = new Intent();
-        intent.putExtra("id",id);
-        intent.setClass(context, JournalismDetailActivity.class);
+        String url = "http://cont.app.autohome.com.cn/autov4.2.5/content/News/newscontent-a2-pm1-v4.2.5-n" + id + "-lz0-sp0-nt0-sa1-p0-c1-fs0-cw320.html";
+        intent.putExtra("url", url);
+        Collection collection = new Collection();
+        collection.setId((long) id);
+        collection.setTitle(journalismBean.getResult().getNewslist().get(position).getTitle());
+        collection.setUrl(url);
+        collection.setImageUrl(journalismBean.getResult().getNewslist().get(position).getSmallpic());
+        intent.putExtra("Collection", collection);
+        intent.setClass(context, WebViewActivity.class);
         startActivity(intent);
     }
 }

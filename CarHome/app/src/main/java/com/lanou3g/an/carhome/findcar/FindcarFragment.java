@@ -7,10 +7,10 @@ import android.support.v4.view.ViewPager;
 
 import com.lanou3g.an.carhome.R;
 import com.lanou3g.an.carhome.beas.BaseFragment;
-import com.lanou3g.an.carhome.findcarNesting.BrandFragment;
-import com.lanou3g.an.carhome.findcarNesting.DepreciateFragment;
-import com.lanou3g.an.carhome.findcarNesting.ScreenFragment;
-import com.lanou3g.an.carhome.findcarNesting.SecondHandCarFragment;
+import com.lanou3g.an.carhome.findcar.brand.BrandFragment;
+import com.lanou3g.an.carhome.findcar.depreciate.DepreciateFragment;
+import com.lanou3g.an.carhome.findcar.screen.ScreenFragment;
+import com.lanou3g.an.carhome.findcar.secondeHandCar.SecondHandCarFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,15 +35,14 @@ public class FindcarFragment extends BaseFragment {
         viewPager = bindView(R.id.findcar_vp);
         tabLayout = bindView(R.id.findcar_tab);
         findcarAdapter = new FindcarAdapter(getChildFragmentManager());
-
     }
 
     @Override
     protected void initData() {
         fragmentList = new ArrayList<>();
         fragmentList.add(new BrandFragment());
-        fragmentList.add(new DepreciateFragment());
         fragmentList.add(new ScreenFragment());
+        fragmentList.add(new DepreciateFragment());
         fragmentList.add(new SecondHandCarFragment());
         findcarAdapter.setFragmentList(fragmentList);
         viewPager.setAdapter(findcarAdapter);

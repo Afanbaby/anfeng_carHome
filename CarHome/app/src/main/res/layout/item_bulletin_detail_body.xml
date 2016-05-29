@@ -10,18 +10,18 @@
 
         <ImageView
             android:id="@+id/item_bulletin_detail_body_iv"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/Forty_dp"
+            android:layout_height="@dimen/Forty_dp"
+            android:layout_margin="@dimen/five_dp"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/item_bulletin_detail_body_auother"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/five_dp"
             android:layout_toRightOf="@id/item_bulletin_detail_body_iv"
-            android:text="李跃" />
+            android:text="@string/test_text" />
 
         <TextView
             android:id="@+id/item_bulletin_detail_body_time"
@@ -29,23 +29,23 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/item_bulletin_detail_body_auother"
             android:layout_toRightOf="@id/item_bulletin_detail_body_iv"
-            android:text="05/17 13:26" />
+            android:text="@string/test_text" />
 
         <TextView
             android:id="@+id/item_bulletin_detail_body_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/item_bulletin_detail_body_iv"
-            android:layout_margin="5dp"
-            android:text="大家上午好，今天我们要试驾的车型是宝沃BX7，2.0T高功版，我们试驾体验马上开始，现在是车队调整时间。" />
+            android:layout_margin="@dimen/five_dp"
+            android:layout_marginTop="@dimen/five_dp"
+            android:text="@string/test_text" />
     </RelativeLayout>
 
     <ImageView
         android:id="@+id/item_bulletin_detail_body_bodyIv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@mipmap/fild" />
+        android:layout_margin="@dimen/five_dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,20 +56,20 @@
             android:id="@+id/item_bulletin_detail_body_Zambia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:background="#9d9d9d"
-            android:text="赞73" />
+            android:layout_marginLeft="@dimen/five_dp"
+            android:background="@color/color_gray_one"
+            android:text="@string/test_text" />
 
         <TextView
             android:id="@+id/item_bulletin_detail_body_forward"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:background="#9d9d9d"
-            android:text="转发" />
+            android:layout_marginLeft="@dimen/two_ten_dp"
+            android:background="@color/color_gray_one"
+            android:text="@string/test_text" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zoo_dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
@@ -77,9 +77,9 @@
             android:id="@+id/item_bulletin_detail_body_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:background="#9d9d9d"
-            android:text="19评论" ></TextView>
+            android:layout_marginRight="@dimen/five_dp"
+            android:background="@color/color_gray_one"
+            android:text="@string/test_text"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -87,34 +87,92 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/item_bulletin_detail_body_comment_iv"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="5dp"
+            android:id="@+id/item_bulletin_detail_body_comment_iv_one"
+            android:layout_width="@dimen/Thirty_dp"
+            android:layout_height="@dimen/Thirty_dp"
+            android:layout_margin="@dimen/five_dp"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/item_bulletin_detail_body_comment_name"
+            android:id="@+id/item_bulletin_detail_body_comment_name_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/item_bulletin_detail_body_comment_iv"
-            android:text="南方人物" />
+            android:layout_marginTop="@dimen/five_dp"
+            android:layout_toRightOf="@id/item_bulletin_detail_body_comment_iv_one"
+            android:text="@string/test_text" />
 
         <TextView
-            android:id="@+id/item_bulletin_detail_body_comment_bady"
+            android:id="@+id/item_bulletin_detail_body_comment_bady_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/item_bulletin_detail_body_comment_name"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/item_bulletin_detail_body_comment_iv"
-            android:text="你是福田套壳的真心无语,哎...要做喷子也要专业点啊" />
+            android:layout_below="@id/item_bulletin_detail_body_comment_name_one"
+            android:layout_marginTop="@dimen/five_dp"
+            android:layout_toRightOf="@id/item_bulletin_detail_body_comment_iv_one"
+            android:text="@string/test_text" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_bulletin_detail_body_comment_iv_two"
+            android:layout_width="@dimen/Thirty_dp"
+            android:layout_height="@dimen/Thirty_dp"
+            android:layout_margin="@dimen/five_dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/item_bulletin_detail_body_comment_name_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/five_dp"
+            android:layout_toRightOf="@id/item_bulletin_detail_body_comment_iv_two"
+            android:text="@string/test_text" />
+
+        <TextView
+            android:id="@+id/item_bulletin_detail_body_comment_bady_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_bulletin_detail_body_comment_name_two"
+            android:layout_marginTop="@dimen/five_dp"
+            android:layout_toRightOf="@id/item_bulletin_detail_body_comment_iv_two"
+            android:text="@string/test_text" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_bulletin_detail_body_comment_iv_three"
+            android:layout_width="@dimen/Thirty_dp"
+            android:layout_height="@dimen/Thirty_dp"
+            android:layout_margin="@dimen/five_dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/item_bulletin_detail_body_comment_name_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/five_dp"
+            android:layout_toRightOf="@id/item_bulletin_detail_body_comment_iv_three"
+            android:text="@string/test_text" />
+
+        <TextView
+            android:id="@+id/item_bulletin_detail_body_comment_bady_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_bulletin_detail_body_comment_name_three"
+            android:layout_marginTop="@dimen/five_dp"
+            android:layout_toRightOf="@id/item_bulletin_detail_body_comment_iv_three"
+            android:text="@string/test_text" />
     </RelativeLayout>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#9d9d9d"
-        android:hint="发表评论..."
-        android:layout_margin="5dp"/>
+        android:layout_margin="@dimen/five_dp"
+        android:background="@color/color_gray_one"
+        android:hint="@string/Comment" />
 </LinearLayout>

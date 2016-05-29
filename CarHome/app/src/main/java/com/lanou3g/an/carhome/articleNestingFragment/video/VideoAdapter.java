@@ -55,12 +55,12 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyVideoView>
         holder.videotime.setText(time);
         holder.videoNumber.setText(videoBean.getResult().getList().get(position).getPlaycount() + "播放");
 
-        if (onClickListenter != null){
+        if (onClickListenter != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int id = videoBean.getResult().getList().get(position).getId();
-                    onClickListenter.onClick(id);
+                    onClickListenter.onClick(id, position);
                 }
             });
         }
@@ -88,7 +88,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyVideoView>
         Picasso.with(context).load(url).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(view);
     }
 
-    interface OnClickListenter{
-        void onClick(int id);
+    interface OnClickListenter {
+        void onClick(int id, int pos);
     }
 }

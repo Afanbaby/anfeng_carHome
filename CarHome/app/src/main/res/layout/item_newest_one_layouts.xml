@@ -15,8 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/item_newest_one_iv"
-        android:text="或巴黎车展亮相 全新铃木速翼特假想图"
-        android:layout_marginLeft="10dp"/>
+        android:text="@string/test_text"
+        android:layout_marginLeft="@dimen/ten_dp"/>
 
     <TextView
         android:id="@+id/item_newest_one_time"
@@ -24,8 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/item_newest_one_title"
         android:layout_toRightOf="@id/item_newest_one_iv"
-        android:text="2016-05-11"
-        android:layout_marginLeft="10dp"
+        android:text="@string/test_text"
+        android:layout_marginLeft="@dimen/ten_dp"
         android:layout_alignParentBottom="true"/>
 
     <TextView
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@id/item_newest_one_title"
-        android:text="61评论"
+        android:text="@string/test_text"
         android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

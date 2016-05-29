@@ -2,37 +2,37 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="@dimen/five_dp">
 
     <TextView
         android:id="@+id/item_bulletin_bull"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:text="试驾评测快报"
-        android:textColor="#6699FF" />
+        android:layout_marginLeft="@dimen/five_dp"
+        android:layout_marginTop="@dimen/five_dp"
+        android:text="@string/test_text"
+        android:textColor="@color/colorBule" />
 
     <TextView
         android:id="@+id/item_bulletin_if_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
-        android:background="#6699FF"
-        android:text="播报结束"
-        android:textColor="#FFFFFF" />
+        android:layout_marginRight="@dimen/five_dp"
+        android:layout_marginTop="@dimen/five_dp"
+        android:background="@color/colorBule"
+        android:text="@string/test_text"
+        android:textColor="@color/colorWhilt" />
 
     <TextView
         android:id="@+id/item_bulletin_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/item_bulletin_bull"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:text="道路测试 马自达CX-4快报"
-        android:textSize="16sp" />
+        android:layout_marginLeft="@dimen/five_dp"
+        android:layout_marginTop="@dimen/five_dp"
+        android:text="@string/test_text"
+        android:textSize="@dimen/sixteen_sp" />
 
 
     <ImageView
@@ -40,8 +40,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/item_bulletin_title"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:paddingLeft="@dimen/ten_dp"
+        android:paddingRight="@dimen/ten_dp"
         android:src="@mipmap/fild" />
 
     <TextView
@@ -49,20 +49,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/item_bulletin_iv"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:text="2016-05-11" />
+        android:layout_marginBottom="@dimen/five_dp"
+        android:layout_marginLeft="@dimen/five_dp"
+        android:layout_marginTop="@dimen/five_dp"
+        android:text="@string/test_text" />
 
     <TextView
         android:id="@+id/item_bulletin_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/item_bulletin_iv"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginRight="@dimen/five_dp"
+        android:layout_marginTop="@dimen/five_dp"
         android:layout_alignParentRight="true"
-        android:text="1348833人浏览"
-
+        android:text="@string/test_text"
         />
 </RelativeLayout>

@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <com.lanou3g.an.carhome.utils.SwipeRefreshLoadingLayout
-        android:id="@+id/fragment_newsest_srff"
+    <!--<com.lanou3g.an.carhome.utils.SwipeRefreshLoadingLayout-->
+    <!--android:id="@+id/fragment_newsest_srff"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <!--</com.lanou3g.an.carhome.utils.SwipeRefreshLoadingLayout>-->
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/item_newest_bom_lv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ListView
-            android:id="@+id/item_newest_bom_lv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.lanou3g.an.carhome.utils.SwipeRefreshLoadingLayout>
-</RelativeLayout>
+        android:layout_height="match_parent" />
+</LinearLayout>

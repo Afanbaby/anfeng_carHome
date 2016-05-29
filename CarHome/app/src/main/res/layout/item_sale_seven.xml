@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_sale_seven_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/five_dp"
+            android:layout_marginTop="@dimen/five_dp"
+            android:src="@mipmap/fild" />
+
+        <TextView
+            android:id="@+id/item_sale_seven_title_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/five_dp"
+            android:layout_marginTop="@dimen/five_dp"
+            android:layout_toRightOf="@id/item_sale_seven_iv"
+            android:text="@string/test_text" />
+
+        <TextView
+            android:id="@+id/item_sale_seven_title_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_sale_seven_title_one"
+            android:layout_marginLeft="@dimen/five_dp"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:layout_toRightOf="@id/item_sale_seven_iv"
+            android:text="@string/test_text" />
+
+        <TextView
+            android:id="@+id/item_sale_seven_price_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_sale_seven_title_two"
+            android:layout_marginLeft="@dimen/five_dp"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:layout_toRightOf="@id/item_sale_seven_iv"
+            android:text="@string/test_text"
+            android:textColor="@color/colorRed"/>
+
+        <TextView
+            android:id="@+id/item_sale_seven_price_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_sale_seven_title_two"
+            android:layout_marginLeft="@dimen/five_dp"
+            android:layout_marginTop="@dimen/Fifteen_dp"
+            android:layout_toRightOf="@id/item_sale_seven_price_one"
+            android:text="@string/test_text"
+            android:textSize="@dimen/ten_sp"/>
+    </RelativeLayout>
+</LinearLayout>

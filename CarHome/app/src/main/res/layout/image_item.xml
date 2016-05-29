@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/slideView"
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="@dimen/one_hundred_and_sixty">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/myviewPager"
@@ -21,19 +21,19 @@
             android:layout_alignParentBottom="true"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:padding="@dimen/eight_dp">
 
             <View
                 android:id="@+id/v_dot1"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
+                android:layout_width="@dimen/eight_dp"
+                android:layout_height="@dimen/eight_dp"
                 android:background="@mipmap/point_pressed" />
 
             <View
                 android:id="@+id/v_dot2"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_marginLeft="5dp"
+                android:layout_width="@dimen/eight_dp"
+                android:layout_height="@dimen/eight_dp"
+                android:layout_marginLeft="@dimen/five_dp"
                 android:background="@mipmap/point_unpressed" />
         </LinearLayout>
     </RelativeLayout>

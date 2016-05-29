@@ -8,12 +8,12 @@
         android:id="@+id/item_main_draws_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="2dp"
-        android:text="全部品牌" />
+        android:layout_marginLeft="@dimen/three_dp"
+        android:layout_marginTop="@dimen/two_dp"
+        android:text="@string/all_barnd" />
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zoo_dp"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
@@ -21,8 +21,8 @@
         android:id="@+id/item_main_draws_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="3dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginRight="@dimen/three_dp"
+        android:layout_marginTop="@dimen/two_dp"
         android:src="@mipmap/ahlib_select_directory_icon_select_a"
         android:visibility="gone" />
     />

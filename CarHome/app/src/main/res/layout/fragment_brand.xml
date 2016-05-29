@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <ExpandableListView
+        android:id="@+id/fragment_brand_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.lanou3g.an.carhome.utils.SideBar
+        android:id="@+id/fragment_brand_sidebar"
+        android:layout_width="@dimen/two_ten_dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/two_dp" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="品牌"/>
-</LinearLayout>
+        android:id="@+id/fragment_brand_tv"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="@dimen/three_ten_sp"
+        android:scrollbars = "vertical"
+        android:layout_width="@dimen/Eighty_dp"
+        android:layout_height="@dimen/Eighty_dp" />
+</RelativeLayout>

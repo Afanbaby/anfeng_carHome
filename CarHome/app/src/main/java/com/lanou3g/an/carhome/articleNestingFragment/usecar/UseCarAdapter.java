@@ -81,13 +81,13 @@ public class UseCarAdapter extends RecyclerView.Adapter {
                 break;
         }
 
-        if (onClickListener != null){
+        if (onClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int id = useCarBean.getResult().getNewslist().get(position).getId();
                     int type = useCarBean.getResult().getNewslist().get(position).getMediatype();
-                    onClickListener.onClick(id,type);
+                    onClickListener.onClick(id, type, position);
                 }
             });
         }
@@ -133,6 +133,6 @@ public class UseCarAdapter extends RecyclerView.Adapter {
     }
 
     interface OnClickListener {
-        void onClick(int id,int type);
+        void onClick(int id, int type, int position);
     }
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ExpandableListView
+        android:id="@+id/fragment_one_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.lanou3g.an.carhome.utils.SideBar
+        android:id="@+id/fragment_one_sidebar"
+        android:layout_width="@dimen/Thirty_dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:id="@+id/fragment_one_sidebar_tv"
+        android:layout_width="@dimen/Eighty_dp"
+        android:layout_height="@dimen/Eighty_dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:scrollbars="vertical"
+        android:textSize="@dimen/three_ten_sp" />
+</RelativeLayout>

@@ -13,13 +13,13 @@
         <FrameLayout
             android:id="@+id/replace_view"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/zoo_dp"
             android:layout_weight="1" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000" />
+            android:layout_height="@dimen/one_dp"
+            android:background="@color/colorBalck" />
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
 
             <RadioButton
                 android:id="@+id/article_page"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zoo_dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/article_page_selsctor"
@@ -38,7 +38,7 @@
 
             <RadioButton
                 android:id="@+id/forum_page"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zoo_dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/forum_page_selsctor"
@@ -47,7 +47,7 @@
 
             <RadioButton
                 android:id="@+id/findcar_page"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zoo_dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/findcar_page_selsctor"
@@ -56,7 +56,7 @@
 
             <RadioButton
                 android:id="@+id/sale_page"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zoo_dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/sale_page_selsctor"
@@ -65,7 +65,7 @@
 
             <RadioButton
                 android:id="@+id/my_page"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zoo_dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/my_page_selsctor"
@@ -75,13 +75,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="189dp"
+
+        android:layout_width="@dimen/one_hundred_one_dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
         android:background="#dfff"
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
+        android:dividerHeight="@dimen/zoo_dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -93,37 +94,32 @@
                 android:id="@+id/main_name_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="@dimen/Sixty_dp"
+                android:layout_marginTop="@dimen/five_dp"
                 android:gravity="center"
-                android:text="选择品牌" />
+                android:text="@string/test_text" />
 
             <TextView
                 android:id="@+id/close_drawer_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:text="关闭"
-                android:textColor="#6699FF" />
+                android:layout_marginLeft="@dimen/Thirty_dp"
+                android:layout_marginRight="@dimen/ten_dp"
+                android:layout_marginTop="@dimen/five_dp"
+                android:text="@string/close"
+                android:textColor="@color/colorgray" />
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ListView
-                android:id="@+id/main_lv"
+            <FrameLayout
+                android:id="@+id/fragment_main_replace"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#9d9d9d" />
+                android:layout_height="wrap_content" />
 
-            <com.lanou3g.an.carhome.main.SideBar
-                android:id="@+id/sidrbar"
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true" />
+
         </RelativeLayout>
     </LinearLayout>
 

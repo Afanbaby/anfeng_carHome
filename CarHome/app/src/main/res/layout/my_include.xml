@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/my_include"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#cccccc"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/five_dp"
+        android:text="@string/my"
+        android:textColor="@color/colorBule" />
+
+    <TextView
+        android:layout_width="@dimen/zoo_dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/my_include_night"
+        android:layout_width="@dimen/two_ten_dp"
+        android:layout_height="@dimen/two_ten_dp"
+        android:layout_margin="@dimen/five_dp"
+        android:src="@mipmap/my_night" />
+</LinearLayout>

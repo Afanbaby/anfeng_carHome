@@ -5,6 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.lanou3g.an.carhome.R;
+import com.lanou3g.an.carhome.utils.ThemeChangeUtil;
+
 /**
  * Created by anfeng on 16/5/9.
  */
@@ -13,6 +16,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeChangeUtil.changeTheme(this);
         setContentView(getLayout());
         initView();
         initData();
@@ -25,12 +29,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initData();
 
     /**
-     *  这个方法使组件实例化不需要转型
-     *  使用方式:
-     *  TextView textView = bindView(R.id.tv);
-     *  这样使用这个方法的时候是不需要强转的
+     * 这个方法使组件实例化不需要转型
+     * 使用方式:
+     * TextView textView = bindView(R.id.tv);
+     * 这样使用这个方法的时候是不需要强转的
      */
-    protected <T extends View> T bindView(int id){
+    protected <T extends View> T bindView(int id) {
         return (T) findViewById(id);
     }
 }

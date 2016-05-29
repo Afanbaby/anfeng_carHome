@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="x86"
+    api-level="21"
+    density="xhdpi"
+    format="7"
+    timestamp="3654475839325" >
+
+    <task
+        name="javac"
+        duration="431" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="250" />
+    <task
+        name="verifier"
+        duration="14" />
+
+    <artifact
+        location="/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/build/outputs/apk/JPushExample(461284)-debug.apk"
+        type="MAIN" />
+
+    <build timestamp="3654475839325" >
+        <artifact
+            location="/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/build/outputs/apk/JPushExample(461284)-debug.apk"
+            type="MAIN" />
+    </build>
+
+</instant-run>

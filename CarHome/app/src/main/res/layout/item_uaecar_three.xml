@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/item_usecar_three_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="搭载YunOs for Car 荣威RX5官图发布"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="@dimen/ten_dp"
+        android:layout_marginTop="@dimen/five_dp"
+        android:text="@string/test_text" />
 
     <LinearLayout
         android:id="@+id/item_usecar_layout"
@@ -22,26 +20,29 @@
 
         <ImageView
             android:id="@+id/item_usecar_three_one_iv"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zoo_dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/item_usecar_three_title"
+            android:layout_marginLeft="@dimen/five_dp"
             android:layout_weight="1"
-            android:src="@mipmap/fild"
-            />
+            android:src="@mipmap/fild" />
 
         <ImageView
             android:id="@+id/item_usecar_three_one_two"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zoo_dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/item_usecar_three_title"
+            android:layout_marginLeft="@dimen/five_dp"
             android:layout_weight="1"
             android:src="@mipmap/fild" />
 
         <ImageView
             android:id="@+id/item_usecar_three_one_three"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zoo_dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/item_usecar_three_title"
+            android:layout_marginLeft="@dimen/five_dp"
+            android:layout_marginRight="@dimen/five_dp"
             android:layout_weight="1"
             android:src="@mipmap/fild" />
     </LinearLayout>
@@ -51,24 +52,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/item_usecar_layout"
-        android:text="2016-05-10"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginBottom="@dimen/five_dp"
+        android:layout_marginLeft="@dimen/ten_dp"
+        android:text="@string/test_text" />
 
     <TextView
         android:id="@+id/item_usecar_photo_speak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/item_usecar_layout"
-       android:layout_marginLeft="270dp"
-        android:text="图说"/>
+        android:layout_marginBottom="@dimen/five_dp"
+        android:layout_marginLeft="@dimen/two_hundred_and_seventy"
+        android:text="@string/test_text" />
 
     <TextView
         android:id="@+id/item_usecar_three_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/item_usecar_layout"
         android:layout_alignParentRight="true"
-        android:text="156图片"
-        android:layout_marginRight="10dp"/>
+        android:layout_below="@id/item_usecar_layout"
+        android:layout_marginBottom="@dimen/five_dp"
+        android:layout_marginRight="@dimen/ten_dp"
+        android:text="@string/test_text" />
 
 </RelativeLayout>

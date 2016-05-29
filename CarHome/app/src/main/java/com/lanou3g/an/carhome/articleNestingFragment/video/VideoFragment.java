@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,11 +16,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.lanou3g.an.carhome.BuildConfig;
+import com.lanou3g.an.carhome.Collection;
 import com.lanou3g.an.carhome.R;
-import com.lanou3g.an.carhome.articleNestingFragment.video.videoDetail.VideoDatailActivity;
+import com.lanou3g.an.carhome.article.WebViewActivity;
 import com.lanou3g.an.carhome.beas.BaseFragment;
 import com.lanou3g.an.carhome.utils.DividerItemDecoration;
+import com.lanou3g.an.carhome.utils.VolleySinge;
 
 /**
  * Created by anfeng on 16/5/9.
@@ -34,6 +34,7 @@ public class VideoFragment extends BaseFragment implements VideoAdapter.OnClickL
     private static final String CLOSE_DRAWER = "com.lanou3g.an.carhome.CLOSEBROADCAST";
     private GetNameBroadcast getNameBroadcast;
     private TextView allTv;
+    private VideoBean videoBean;
 
     @Override
     public int setLayout() {
@@ -58,33 +59,37 @@ public class VideoFragment extends BaseFragment implements VideoAdapter.OnClickL
 
     @Override
     protected void initData() {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest("http://app.api.autohome.com.cn/autov5.0.0/news/videolist-pm2-vt0-s20-lastid0.json",
-                new Response.Listener<String>() {
+
+        VolleySinge.addRequest("http://app.api.autohome.com.cn/autov5.0.0/news/videolist-pm2-vt0-s20-lastid0.json",
+                VideoBean.class,
+                new Response.Listener<VideoBean>() {
                     @Override
-                    public void onResponse(String response) {
-
-                        Gson gson = new Gson();
-                        VideoBean videoBean = gson.fromJson(response, VideoBean.class);
-
-                        videoAdapter.setVideoBean(videoBean);
+                    public void onResponse(VideoBean response) {
+                        videoBean = response;
+                        videoAdapter.setVideoBean(response);
                         recyclerView.setAdapter(videoAdapter);
                     }
                 }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
-            }
-        });
-        requestQueue.add(stringRequest);
+                    }
+                });
         videoAdapter.setOnClickListenter(this);
     }
 
     @Override
-    public void onClick(int id) {
+    public void onClick(int id, int positon) {
         Intent intent = new Intent();
-        intent.putExtra("id", id);
-        intent.setClass(context, VideoDatailActivity.class);
+        String url = "http://v.autohome.com.cn/v_4_" + id + ".html";
+        intent.putExtra("url", url);
+        Collection collection = new Collection();
+        collection.setId((long) id);
+        collection.setUrl(url);
+        collection.setImageUrl(videoBean.getResult().getList().get(positon).getSmallimg());
+        collection.setTitle(videoBean.getResult().getList().get(positon).getTitle());
+        intent.putExtra("Collection", collection);
+        intent.setClass(context, WebViewActivity.class);
         startActivity(intent);
     }
 
@@ -92,7 +97,6 @@ public class VideoFragment extends BaseFragment implements VideoAdapter.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fragment_video_all_linearlayout:
-                Log.d("VideoFragment", "**");
                 Intent intent = new Intent(CLOSE_DRAWER);
                 intent.putExtra("type", 3);
                 context.sendBroadcast(intent);

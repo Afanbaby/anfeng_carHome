@@ -4,39 +4,37 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.transition.Transition;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.lanou3g.an.carhome.BuildConfig;
 import com.lanou3g.an.carhome.R;
 import com.lanou3g.an.carhome.article.ArticleFragment;
 import com.lanou3g.an.carhome.beas.BaseActivity;
+import com.lanou3g.an.carhome.eventBus.DataBeanName;
 import com.lanou3g.an.carhome.findcar.FindcarFragment;
 import com.lanou3g.an.carhome.forum.ForumFragment;
+import com.lanou3g.an.carhome.eventBus.DataBean;
+import com.lanou3g.an.carhome.main.oneFragment.*;
+import com.lanou3g.an.carhome.main.threeFragmnet.ThreeFragment;
+import com.lanou3g.an.carhome.main.twoFragment.TwoFragment;
 import com.lanou3g.an.carhome.my.MyFragment;
 import com.lanou3g.an.carhome.sale.SaleFragment;
-import com.lanou3g.an.carhome.utils.SwipeRefreshLoadingLayout;
+import com.lanou3g.an.carhome.utils.ExampleUtil;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+
+import cn.jpush.android.api.JPushInterface;
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
+import de.greenrobot.event.ThreadMode;
+
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -45,12 +43,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private static final String CLOSE_DRAWER = "com.lanou3g.an.carhome.CLOSEBROADCAST";
     private CloseDrawer closeDrawer;
     private TextView closeTv, nameTv;
-    private ListView listView;
     private MainAdapter mainAdapter;
     private List<String> list;
-    private SideBar sideBar;
-    private String[] array, arrayGrade, arrayVideo, arrayLocation;
+
+    private String[] arrayLocation;
     private int type;
+    public static boolean isForeground = false;
+    private FragmentManager manager;
+    private List<Fragment> fragmentList;
 
 
     @Override
@@ -65,22 +65,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findcarRb = bindView(R.id.findcar_page);
         saleRb = bindView(R.id.sale_page);
         myRb = bindView(R.id.my_page);
-        listView = bindView(R.id.main_lv);
         nameTv = bindView(R.id.main_name_text);
         mainAdapter = new MainAdapter(this);
-        sideBar = bindView(R.id.sidrbar);
-
-        //将首页作为进入的界面
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.replace_view, new ArticleFragment());
-        transaction.commit();
         drawerLayout = bindView(R.id.main_drawer_layout);
+//        //将首页作为进入的界面
+//        manager = getSupportFragmentManager();
+//        if (ThemeChangeUtil.isChange == false) {
+//            FragmentTransaction transaction = manager.beginTransaction();
+//            transaction.replace(R.id.replace_view, new ArticleFragment());
+//            transaction.commit();
+//        } else {
+//            FragmentTransaction transaction = manager.beginTransaction();
+//            transaction.replace(R.id.replace_view, new MyFragment());
+//            transaction.commit();
+//        }
+        registerMessageReceiver();  // used for receive msg
+
 
     }
 
     @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+    }
+
+    @Override
     protected void initData() {
+        //注册事件
+        EventBus.getDefault().register(this);
         articleRb.setOnClickListener(this);
         forumRb.setOnClickListener(this);
         findcarRb.setOnClickListener(this);
@@ -116,98 +128,172 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void onDrawerStateChanged(int newState) {
 
             }
-        });
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MainAdapter.ViewHolder viewHolder = (MainAdapter.ViewHolder) view.getTag();
-                viewHolder.typeImage.setVisibility(View.VISIBLE);
-                viewHolder.typeName.setTextColor(Color.BLUE);
-                drawerLayout.closeDrawer(Gravity.RIGHT);
-                //发广播
-                Intent intent = new Intent("com.lanou3g.an.carhome.TYPENAME");
-                if (type == 1) {
-                    intent.putExtra("nameType", 1);
-                    intent.putExtra("name", array[position]);
-                } else if (type == 2) {
-                    intent.putExtra("nameType", 2);
-                    intent.putExtra("name", arrayGrade[position]);
-                } else if (type == 3) {
-                    intent.putExtra("nameType", 3);
-                    intent.putExtra("name", arrayVideo[position]);
-                } else if (type == 4) {
-                    intent.putExtra("nameType", 4);
-                    intent.putExtra("name", arrayLocation[position]);
-                }
-                sendBroadcast(intent);
-            }
+
         });
 
+        manager = getSupportFragmentManager();
+        fragmentList = new ArrayList<>();
+        fragmentList.add(new ArticleFragment());
+        fragmentList.add(new ForumFragment());
+        fragmentList.add(new FindcarFragment());
+        fragmentList.add(new SaleFragment());
+        fragmentList.add(new MyFragment());
+        manager.beginTransaction()
+                .add(R.id.replace_view, fragmentList.get(0))
+                .add(R.id.replace_view, fragmentList.get(1))
+                .add(R.id.replace_view, fragmentList.get(2))
+                .add(R.id.replace_view, fragmentList.get(3))
+                .add(R.id.replace_view, fragmentList.get(4))
+                .show(fragmentList.get(0))
+                .hide(fragmentList.get(1))
+                .hide(fragmentList.get(2))
+                .hide(fragmentList.get(3))
+                .hide(fragmentList.get(4))
+                .commit();
+
     }
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                MainAdapter.ViewHolder viewHolder = (MainAdapter.ViewHolder) view.getTag();
+//                viewHolder.typeImage.setVisibility(View.VISIBLE);
+//                viewHolder.typeName.setTextColor(Color.BLUE);
+//                drawerLayout.closeDrawer(Gravity.RIGHT);
+//                //发广播
+//                Intent intent = new Intent("com.lanou3g.an.carhome.TYPENAME");
+//                if (type == 1) {
+//                    intent.putExtra("nameType", 1);
+//                    intent.putExtra("name", array[position]);
+//                } else if (type == 2) {
+//                    intent.putExtra("nameType", 2);
+//                    intent.putExtra("name", arrayGrade[position]);
+//                } else if (type == 3) {
+//                    intent.putExtra("nameType", 3);
+//                    intent.putExtra("name", arrayVideo[position]);
+//                } else if (type == 4) {
+//                    intent.putExtra("nameType", 4);
+//                    intent.putExtra("name", arrayLocation[position]);
+//                }
+//                sendBroadcast(intent);
+//            }
+//        });
+
+    /************/
+
+    // 初始化 JPush。如果已经初始化，但没有登录成功，则执行重新登录。
+    private void init() {
+        JPushInterface.init(getApplicationContext());
+    }
+
+
+    @Override
+    protected void onResume() {
+        isForeground = true;
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        isForeground = false;
+        super.onPause();
+    }
+
+    //for receive customer msg from jpush server
+    private MessageReceiver mMessageReceiver;
+    public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_MESSAGE = "message";
+    public static final String KEY_EXTRAS = "extras";
+
+    public void registerMessageReceiver() {
+        mMessageReceiver = new MessageReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction(MESSAGE_RECEIVED_ACTION);
+        registerReceiver(mMessageReceiver, filter);
+    }
+
+    public class MessageReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (MESSAGE_RECEIVED_ACTION.equals(intent.getAction())) {
+                String messge = intent.getStringExtra(KEY_MESSAGE);
+                String extras = intent.getStringExtra(KEY_EXTRAS);
+                StringBuilder showMsg = new StringBuilder();
+                showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
+                if (!ExampleUtil.isEmpty(extras)) {
+                    showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
+                }
+
+            }
+        }
+    }
+
 
     //当点击redioButton时,切换fragment
     @Override
     public void onClick(View v) {
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
+//        FragmentManager manager = getSupportFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
         switch (v.getId()) {
             case R.id.article_page:
-                transaction.replace(R.id.replace_view, new ArticleFragment());
+                changeFragment(0);
                 break;
             case R.id.forum_page:
-                transaction.replace(R.id.replace_view, new ForumFragment());
+                changeFragment(1);
                 break;
             case R.id.findcar_page:
-                transaction.replace(R.id.replace_view, new FindcarFragment());
+                changeFragment(2);
                 break;
             case R.id.sale_page:
-                transaction.replace(R.id.replace_view, new SaleFragment());
+                changeFragment(3);
                 break;
             case R.id.my_page:
-                transaction.replace(R.id.replace_view, new MyFragment());
+                changeFragment(4);
                 break;
             case R.id.close_drawer_text:
                 drawerLayout.closeDrawer(Gravity.RIGHT);
                 break;
         }
-        transaction.commit();
+//        transaction.commit();
     }
 
+    private void changeFragment(int positon) {
+        manager.beginTransaction()
+                .hide(fragmentList.get(0))
+                .hide(fragmentList.get(1))
+                .hide(fragmentList.get(2))
+                .hide(fragmentList.get(3))
+                .hide(fragmentList.get(4))
+                .show(fragmentList.get(positon))
+                .commit();
+    }
 
     //当接到广播的时候,需要打开抽屉
     public class CloseDrawer extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
 
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
             type = intent.getIntExtra("type", 0);
             if (type == 1) {
+                transaction.replace(R.id.fragment_main_replace, new OneFragment());
+                transaction.commit();
                 nameTv.setText("全部品牌");
-                list = new ArrayList<>();
-                array = getResources().getStringArray(R.array.data);
-                for (int i = 0; i <= array.length - 1; i++) {
-                    list.add(array[i]);
-                }
-                mainAdapter.setList(list);
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
                 drawerLayout.openDrawer(Gravity.RIGHT);
             } else if (type == 2) {
+                transaction.replace(R.id.fragment_main_replace, new TwoFragment());
+                transaction.commit();
                 nameTv.setText("全部级别");
-                list = new ArrayList<>();
-                arrayGrade = getResources().getStringArray(R.array.data_grade);
-                for (int i = 0; i <= arrayGrade.length - 1; i++) {
-                    list.add(arrayGrade[i]);
-                }
-                mainAdapter.setList(list);
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
                 drawerLayout.openDrawer(Gravity.RIGHT);
             } else if (type == 3) {
                 nameTv.setText("视频分类");
-                list = new ArrayList<>();
-                arrayVideo = getResources().getStringArray(R.array.data_video);
-                for (int i = 0; i <= arrayVideo.length - 1; i++) {
-                    list.add(arrayVideo[i]);
-                }
-                mainAdapter.setList(list);
+                transaction.replace(R.id.fragment_main_replace, new ThreeFragment());
+                transaction.commit();
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
                 drawerLayout.openDrawer(Gravity.RIGHT);
             } else if (type == 4) {
@@ -221,7 +307,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
                 drawerLayout.openDrawer(Gravity.RIGHT);
             }
-            listView.setAdapter(mainAdapter);
         }
     }
 
@@ -232,5 +317,42 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         unregisterReceiver(closeDrawer);
     }
 
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void getData(DataBean dataBean) {
+        if (dataBean.getType() == 1) {
+            nameTv.setText("车系论坛");
+            drawerLayout.openDrawer(Gravity.RIGHT);
+        }
+        if (dataBean.getType() == 2) {
+            nameTv.setText("地区论坛");
+            drawerLayout.openDrawer(Gravity.RIGHT);
+        }
+        if (dataBean.getType() == 3) {
+            nameTv.setText("主题论坛");
+            drawerLayout.openDrawer(Gravity.RIGHT);
+        }
+        if (dataBean.getType() == 4) {
+            nameTv.setText("品牌");
+            drawerLayout.openDrawer(Gravity.RIGHT);
+        }
+        if (dataBean.getType() == 5) {
+            nameTv.setText("价格");
+            drawerLayout.openDrawer(Gravity.RIGHT);
+        }
+        if (dataBean.getType() == 6) {
+            nameTv.setText("级别");
+            drawerLayout.openDrawer(Gravity.RIGHT);
+        }
+        if (dataBean.getType() == 7) {
+            nameTv.setText("排序");
+            drawerLayout.openDrawer(Gravity.RIGHT);
+        }
+    }
 
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void getDataName(DataBeanName dataBeanName) {
+        if (dataBeanName.getName() != null) {
+            drawerLayout.closeDrawer(Gravity.RIGHT);
+        }
+    }
 }

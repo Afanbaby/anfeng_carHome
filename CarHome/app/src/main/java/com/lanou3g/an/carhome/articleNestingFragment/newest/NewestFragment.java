@@ -3,10 +3,10 @@ package com.lanou3g.an.carhome.articleNestingFragment.newest;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,14 +22,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.google.gson.Gson;
-import com.lanou3g.an.carhome.BuildConfig;
+import com.handmark.pulltorefresh.library.ILoadingLayout;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.lanou3g.an.carhome.Collection;
 import com.lanou3g.an.carhome.R;
-import com.lanou3g.an.carhome.articleNestingFragment.newest.newestDetail.NewestDetailAvtivity;
+import com.lanou3g.an.carhome.article.WebViewActivity;
 import com.lanou3g.an.carhome.beas.BaseFragment;
-import com.lanou3g.an.carhome.utils.DividerItemDecoration;
-import com.lanou3g.an.carhome.utils.SwipeRefreshLoadingLayout;
 import com.lanou3g.an.carhome.utils.VolleySinge;
 
 import java.util.ArrayList;
@@ -40,17 +40,18 @@ import java.util.concurrent.TimeUnit;
 
 import it.sephiroth.android.library.picasso.Picasso;
 
+
 /**
  * Created by anfeng on 16/5/9.
  * 推荐中的最新
  */
-public class NewestFragment extends BaseFragment implements SwipeRefreshLoadingLayout.OnLoadListener, SwipeRefreshLoadingLayout.OnRefreshListener {
+public class NewestFragment extends BaseFragment implements View.OnClickListener {
 
     private ListView listView;
+    private PullToRefreshListView pullToRefreshListView;
     private NewestAdapter newestAdapter;
     private LayoutInflater inflater;
     private ViewPager mviewPager;
-    private SwipeRefreshLoadingLayout srff;
     /**
      * 用于小圆点图片
      */
@@ -74,6 +75,7 @@ public class NewestFragment extends BaseFragment implements SwipeRefreshLoadingL
         }
     };
     private NewestBean newestBean;
+    private ILoadingLayout startLabels;
 
     @Override
     public int setLayout() {
@@ -82,13 +84,15 @@ public class NewestFragment extends BaseFragment implements SwipeRefreshLoadingL
 
     @Override
     protected void initView() {
-        listView = bindView(R.id.item_newest_bom_lv);
+        pullToRefreshListView = bindView(R.id.item_newest_bom_lv);
+        pullToRefreshListView.setMode(PullToRefreshBase.Mode.BOTH);
+        listView = pullToRefreshListView.getRefreshableView();
 
         newestAdapter = new NewestAdapter(context);
         View headView = getLayoutInflater(null).inflate(R.layout.image_item, null);
         listView.addHeaderView(headView);
         inflater = LayoutInflater.from(context);
-        srff = bindView(R.id.fragment_newsest_srff);
+
         mviewPager = bindView(R.id.myviewPager);
         dotLayout = bindView(R.id.dotLayout);
 
@@ -100,38 +104,115 @@ public class NewestFragment extends BaseFragment implements SwipeRefreshLoadingL
             //如果是，就开启轮播切换
             startPlay();
         }
-        srff.setOnLoadListener(this);
-        srff.setOnRefreshListener(this);
+
     }
 
     @Override
     protected void initData() {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest request = new StringRequest(
-                "http://app.api.autohome.com.cn/autov4.2.5/news/newslist-a2-pm1-v4.2.5-c0-nt0-p1-s30-l0.html"
-                , new Response.Listener<String>() {
+        startLabels = pullToRefreshListView.getLoadingLayoutProxy(true, false);
+        startLabels.setRefreshingLabel("正在刷新");
+        startLabels.setReleaseLabel("释放开始刷新");
+
+        ILoadingLayout startLabelsNext = pullToRefreshListView.getLoadingLayoutProxy(false, true);
+        startLabelsNext.setRefreshingLabel("正在加载");
+        startLabelsNext.setPullLabel("上拉加载更多");
+
+        VolleySinge.addRequest("http://app.api.autohome.com.cn/autov4.2.5/news/newslist-a2-pm1-v4.2.5-c0-nt0-p1-s30-l0.html",
+                NewestBean.class,
+                new Response.Listener<NewestBean>() {
+                    @Override
+                    public void onResponse(NewestBean response) {
+                        newestBean = response;
+                        //初始化小圆点
+                        initViewImage();
+                        newestAdapter.setNewestBean(newestBean);
+                        pullToRefreshListView.setAdapter(newestAdapter);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+
+
+        pullToRefreshListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
-            public void onResponse(String response) {
-                Gson gson = new Gson();
-                newestBean = gson.fromJson(response, NewestBean.class);
-                //初始化小圆点
-                initViewImage();
-                newestAdapter.setNewestBean(newestBean);
-                listView.setAdapter(newestAdapter);
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                //下拉刷新
+                VolleySinge.addRequest("http://app.api.autohome.com.cn/autov4.2.5/news/newslist-a2-pm1-v4.2.5-c0-nt0-p1-s30-l0.html",
+                        NewestBean.class,
+                        new Response.Listener<NewestBean>() {
+                            @Override
+                            public void onResponse(NewestBean response) {
+                                newestBean = response;
+                                newestAdapter.setNewestBean(newestBean);
+                                pullToRefreshListView.onRefreshComplete();
+                                String str = DateUtils.formatDateTime(getContext(), System.currentTimeMillis(), DateUtils.
+                                        FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+                                startLabels.setLastUpdatedLabel("最后更新时间:" + str);
+                                Toast.makeText(context, "刷新数据成功", Toast.LENGTH_SHORT).show();
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(context, "数据解析失败,请下拉刷新...", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
-        }, new Response.ErrorListener() {
+
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                //上拉加载
+                VolleySinge.addRequest("http://app.api.autohome.com.cn/autov4.2.5/news/newslist-a2-pm1-v4.2.5-c0-nt0-p" + newestBean.getResult().getNewslist().get(newestBean.getResult().getNewslist().size() - 1).getId() + "-s30-l" + newestBean.getResult().getNewslist().get(newestBean.getResult().getNewslist().size() - 1).getLasttime() + ".html",
+                        NewestBean.class,
+                        new Response.Listener<NewestBean>() {
+                            @Override
+                            public void onResponse(NewestBean response) {
+                                newestBean.getResult().getNewslist().addAll(response.getResult().getNewslist());
+                                newestAdapter.setNewestBean(newestBean);
+                                pullToRefreshListView.onRefreshComplete();
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(context, "数据解析失败,请上拉加载...", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
-        requestQueue.add(request);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        pullToRefreshListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //当点击每一行的时候,将网站传过去
                 Intent intent = new Intent();
-                intent.putExtra("webId", id);
-                intent.setClass(context, NewestDetailAvtivity.class);
+                String url = "";
+                int viewType = newestAdapter.getItemViewType(position - 2);
+                switch (viewType) {
+                    case 3://视频
+                        url = "http://v.autohome.com.cn/v_4_" + newestBean.getResult().getNewslist().get(position - 2).getId() + ".html";
+                        break;
+                    case 5://热帖
+                        url = "http://forum.app.autohome.com.cn/autov5.0.0/forum/club/topiccontent-a2-pm2-v5.0.0-t" + newestBean.getResult().getNewslist().get(position - 2).getId() + "-o0-p1-s20-c1-nt0-fs0-sp0-al0-cw320.json";
+                        break;
+                    default:
+                        url = "http://cont.app.autohome.com.cn/autov4.2.5/content/News/newscontent-a2-pm1-v4.2.5-n" +
+                                newestBean.getResult().getNewslist().get(position - 2).getId() + "-lz0-sp0-nt0-sa1-p0-c1-fs0-cw320.html";
+                        break;
+                }
+                intent.putExtra("url", url);
+                intent.setClass(context, WebViewActivity.class);
+                //将详情中的内部类的newslistBean传过去
+                int cId = newestBean.getResult().getNewslist().get(position - 2).getId();
+                String cTitle = newestBean.getResult().getNewslist().get(position - 2).getTitle();
+                String cUrl = url;
+                String cSmallpic = newestBean.getResult().getNewslist().get(position - 2).getSmallpic();
+                Collection collection = new Collection();
+                collection.setId((long) cId);
+                collection.setTitle(cTitle);
+                collection.setUrl(cUrl);
+                collection.setImageUrl(cSmallpic);
+                intent.putExtra("Collection", collection);
                 startActivity(intent);
             }
         });
@@ -149,8 +230,8 @@ public class NewestFragment extends BaseFragment implements SwipeRefreshLoadingL
             params.leftMargin = 15;//设置小圆点的外边距
             params.rightMargin = 15;
 
-            params.height = 40;//设置小圆点的大小
-            params.width = 40;
+            params.height = 20;//设置小圆点的大小
+            params.width = 20;
 
             if (i == 0) {
                 dotView.setBackgroundResource(R.mipmap.point_pressed);
@@ -164,36 +245,14 @@ public class NewestFragment extends BaseFragment implements SwipeRefreshLoadingL
             //上面是动态添加了四个小圆点
         }
 
-        String url1 = newestBean.getResult().getFocusimg().get(0).getImgurl();
-        String url2 = newestBean.getResult().getFocusimg().get(1).getImgurl();
-        String url3 = newestBean.getResult().getFocusimg().get(2).getImgurl();
-        String url4 = newestBean.getResult().getFocusimg().get(3).getImgurl();
-        String url5 = newestBean.getResult().getFocusimg().get(4).getImgurl();
-        String url6 = newestBean.getResult().getFocusimg().get(5).getImgurl();
-
-        ImageView img1 = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
-        ImageView img2 = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
-        ImageView img3 = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
-        ImageView img4 = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
-        ImageView img5 = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
-        ImageView img6 = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
-        Picasso.with(context).load(url1).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(img1);
-        Picasso.with(context).load(url2).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(img2);
-        Picasso.with(context).load(url3).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(img3);
-        Picasso.with(context).load(url4).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(img4);
-        Picasso.with(context).load(url5).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(img5);
-        Picasso.with(context).load(url6).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(img6);
-
-//        img1.setBackgroundResource(R.mipmap.main_img1);
-//        img2.setBackgroundResource(R.mipmap.main_img2);
-//        img3.setBackgroundResource(R.mipmap.main_img3);
-//        img4.setBackgroundResource(R.mipmap.main_img4);
-        list.add(img1);
-        list.add(img2);
-        list.add(img3);
-        list.add(img4);
-        list.add(img5);
-        list.add(img6);
+        //设置轮播图的图片
+        for (int i = 0; i <= 5; i++) {
+            String url = newestBean.getResult().getFocusimg().get(i).getImgurl();
+            ImageView img = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
+            img.setOnClickListener(this);
+            Picasso.with(context).load(url).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(img);
+            list.add(img);
+        }
 
         ImagePaperAdapter adapter = new ImagePaperAdapter((ArrayList<ImageView>) list);
         mviewPager.setAdapter(adapter);
@@ -212,31 +271,15 @@ public class NewestFragment extends BaseFragment implements SwipeRefreshLoadingL
         //根据他的参数说明，第一个参数是执行的任务(这里就是切换轮播图的任务)，第二个参数是第一次执行的间隔，第三个参数是执行任务的周期；
     }
 
+    //轮播图的点击事件
     @Override
-    public void onLoad() {
-        srff.setRefreshing(false);
+    public void onClick(View v) {
+        Intent intent = new Intent();
+        String url = "http://v.autohome.com.cn/Error/_404?aspxerrorpath=/v_4_.html";
+        intent.putExtra("url", url);
+        intent.setClass(context, WebViewActivity.class);
+        startActivity(intent);
     }
-
-    @Override
-    public void onRefresh() {
-        Toast.makeText(context, "下拉刷新", Toast.LENGTH_SHORT).show();
-        srff.setRefreshing(false);
-        VolleySinge.addRequest("http://app.api.autohome.com.cn/autov4.2.5/news/newslist-a2-pm1-v4.2.5-c0-nt0-p1-s30-l0.html",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Gson gson = new Gson();
-                        NewestBean newestBean = gson.fromJson(response, NewestBean.class);
-                        newestAdapter.setNewestBean(newestBean);
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-    }
-
 
     /**
      * 执行轮播图切换任务

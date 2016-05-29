@@ -1,6 +1,8 @@
 package com.lanou3g.an.carhome.articleNestingFragment.video;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.SimpleTimeZone;
 
 /**
  * Created by anfeng on 16/5/12.
@@ -112,7 +114,7 @@ public class VideoBean {
             this.list = list;
         }
 
-        public static class ListBean {
+        public static class ListBean implements Serializable {
             private int id;
             private String title;
             private String type;

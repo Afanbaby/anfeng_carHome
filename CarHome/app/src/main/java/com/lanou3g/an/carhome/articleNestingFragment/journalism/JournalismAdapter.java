@@ -47,17 +47,17 @@ public class JournalismAdapter extends RecyclerView.Adapter<JournalismAdapter.My
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        getIntentData(holder.journalismIv,journalismBean.getResult().getNewslist().get(position).getSmallpic());
+        getIntentData(holder.journalismIv, journalismBean.getResult().getNewslist().get(position).getSmallpic());
         holder.journalismTitle.setText(journalismBean.getResult().getNewslist().get(position).getTitle());
         holder.journalismTime.setText(journalismBean.getResult().getNewslist().get(position).getTime());
         holder.journalismNumber.setText(journalismBean.getResult().getNewslist().get(position).getReplycount() + "评论");
 
-        if (onClickListener != null){
+        if (onClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int id = journalismBean.getResult().getNewslist().get(position).getId();
-                    onClickListener.onClick(id);
+                    onClickListener.onClick(id, position);
                 }
             });
         }
@@ -69,10 +69,10 @@ public class JournalismAdapter extends RecyclerView.Adapter<JournalismAdapter.My
     }
 
 
-
     class MyViewHolder extends RecyclerView.ViewHolder {
         private ImageView journalismIv;
-        private TextView journalismTitle,journalismTime,journalismNumber;
+        private TextView journalismTitle, journalismTime, journalismNumber;
+
         public MyViewHolder(View itemView) {
             super(itemView);
             journalismIv = (ImageView) itemView.findViewById(R.id.item_journalism_iv);
@@ -82,11 +82,11 @@ public class JournalismAdapter extends RecyclerView.Adapter<JournalismAdapter.My
         }
     }
 
-    public void getIntentData(ImageView view,String url) {
+    public void getIntentData(ImageView view, String url) {
         Picasso.with(context).load(url).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(view);
     }
 
-    interface OnClickListener{
-        void onClick(int id);
+    interface OnClickListener {
+        void onClick(int id, int positon);
     }
 }

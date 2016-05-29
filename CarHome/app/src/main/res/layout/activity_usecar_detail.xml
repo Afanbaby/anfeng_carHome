@@ -1,12 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBalck"
     android:orientation="vertical">
 
-    <WebView
-        android:id="@+id/activity_usecar_web_view"
+    <LinearLayout
+        android:id="@+id/activity_usecar_detail_linear1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:focusable="false" />
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/activity_usecar_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/two_ten_dp"
+                android:layout_height="@dimen/two_ten_dp"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:layout_marginTop="@dimen/five_dp"
+                android:src="@mipmap/back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/five_dp"
+                android:text="@string/return_text"
+                android:textColor="@color/colorWhilt" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="@dimen/ten_dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/activity_usecar_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/five_dp"
+            android:text="@string/use_car_number"
+            android:textColor="@color/colorWhilt" />
+
+        <TextView
+            android:layout_width="@dimen/Forty_dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/five_dp"
+            android:src="@mipmap/download" />
+
+        <TextView
+            android:layout_width="@dimen/two_ten_dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/five_dp"
+            android:src="@mipmap/collection" />
+
+        <TextView
+            android:layout_width="@dimen/two_ten_dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/five_dp"
+            android:src="@mipmap/share" />
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/activity_usecar_vp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zoo_dp"
+        android:layout_margin="@dimen/five_dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/activity_usecar_detail_linear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/activity_usecar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/five_dp"
+            android:text="@string/test_text"
+            android:textColor="@color/colorWhilt" />
+
+        <TextView
+            android:id="@+id/activity_usecar_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/five_dp"
+            android:layout_marginRight="@dimen/five_dp"
+            android:text="@string/test_text"
+            android:textColor="@color/colorWhilt" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="@dimen/zoo_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/five_dp"
+                android:layout_weight="1"
+                android:background="@color/colorGray"
+                android:hint="@string/test_text"
+                android:textColor="@color/colorWhilt"
+                android:textColorHint="@color/colorWhilt" />
+
+            <TextView
+                android:id="@+id/activity_usecar_number"
+                android:layout_width="@dimen/Fifty_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ten_dp"
+                android:layout_marginRight="@dimen/five_dp"
+                android:background="@color/colorGray"
+                android:text="@string/test_text"
+                android:textColor="@color/colorWhilt" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

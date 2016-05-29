@@ -6,18 +6,18 @@
 
     <ImageView
         android:id="@+id/item_newest_five_iv"
-        android:layout_width="100dp"
-        android:layout_height="65dp"
+        android:layout_width="@dimen/One_hundred_dp"
+        android:layout_height="@dimen/Sixty_five_dp"
         android:src="@mipmap/fild"
-        android:layout_margin="5dp"/>
+        android:layout_margin="@dimen/five_dp"/>
 
     <TextView
         android:id="@+id/item_newest_five_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/item_newest_five_iv"
-        android:text="配置外观都满意 购置长安CS35 1.6L"
-        android:layout_marginTop="10dp"/>
+        android:text="@string/test_text"
+        android:layout_marginTop="@dimen/ten_dp"/>
 
     <TextView
         android:id="@+id/item_newest_five_time"
@@ -25,9 +25,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/item_newest_five_title"
         android:layout_toRightOf="@id/item_newest_five_iv"
-        android:text="2016-05-11"
+        android:text="@string/test_text"
         android:layout_alignParentBottom="true"
-        android:paddingBottom="10dp"/>
+        android:paddingBottom="@dimen/ten_dp"/>
 
     <TextView
         android:id="@+id/item_newest_five_number"
@@ -35,9 +35,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@id/item_newest_five_title"
-        android:text="241回帖"
+        android:text="@string/test_text"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="10dp"
-        android:paddingBottom="10dp"/>
+        android:layout_marginRight="@dimen/ten_dp"
+        android:paddingBottom="@dimen/ten_dp"/>
 
 </RelativeLayout>

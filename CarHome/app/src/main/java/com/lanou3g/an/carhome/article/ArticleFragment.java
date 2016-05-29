@@ -45,7 +45,6 @@ public class ArticleFragment extends BaseFragment {
         tab = bindView(R.id.article_tab);
         vp = bindView(R.id.vp);
         articleAdapter = new ArticleAdapter(getChildFragmentManager());
-
     }
 
     @Override
@@ -85,6 +84,7 @@ public class ArticleFragment extends BaseFragment {
 
             }
         });
+
         //设置tabLayout
         tab.setupWithViewPager(vp);
         tab.setTabTextColors(Color.GRAY, Color.BLUE);

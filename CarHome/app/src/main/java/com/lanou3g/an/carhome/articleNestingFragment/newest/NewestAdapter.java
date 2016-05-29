@@ -1,9 +1,6 @@
 package com.lanou3g.an.carhome.articleNestingFragment.newest;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.Response;
-import com.lanou3g.an.carhome.BuildConfig;
 import com.lanou3g.an.carhome.R;
-import com.lanou3g.an.carhome.articleNestingFragment.newest.newestDetail.NewestDetailAvtivity;
-
-import java.util.ArrayList;
 
 import it.sephiroth.android.library.picasso.Picasso;
 
@@ -59,7 +51,7 @@ public class NewestAdapter extends BaseAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return 6;
+        return 7;
     }
 
     @Override
@@ -220,31 +212,10 @@ public class NewestAdapter extends BaseAdapter {
         }
     }
 
-    /**************/
     @Override
     public int getItemViewType(int position) {
         return newestBean.getResult().getNewslist().get(position).getMediatype();
     }
-
-
-
-
-  /*  //获取网络图片
-    public void getIntentData(String url, ImageView view) {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        ImageLoader imageLoader = new ImageLoader(requestQueue, new ImageLoader.ImageCache() {
-            @Override
-            public Bitmap getBitmap(String url) {
-                return null;
-            }
-
-            @Override
-            public void putBitmap(String url, Bitmap bitmap) {
-            }
-        });
-        ImageLoader.ImageListener listener = ImageLoader.getImageListener(view, R.mipmap.fild, R.mipmap.fild);
-        imageLoader.get(url, listener);
-    }*/
 
     //通过毕加索来获取网络数据
     public void getIntentData(String url, ImageView view) {

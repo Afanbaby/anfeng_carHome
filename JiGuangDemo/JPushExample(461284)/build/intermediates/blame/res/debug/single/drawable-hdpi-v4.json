@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/build/intermediates/res/merged/debug/drawable-hdpi-v4/jpush_notification_icon.png",
+        "source": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/res/drawable-hdpi/jpush_notification_icon.png"
+    },
+    {
+        "merged": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/build/intermediates/res/merged/debug/drawable-hdpi-v4/border_bg.9.png",
+        "source": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/res/drawable-hdpi/border_bg.9.png"
+    },
+    {
+        "merged": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/build/intermediates/res/merged/debug/drawable-hdpi-v4/corners_bg.xml",
+        "source": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/res/drawable-hdpi/corners_bg.xml"
+    },
+    {
+        "merged": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_richpush_actionbar_back.png",
+        "source": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/res/drawable-hdpi/ic_richpush_actionbar_back.png"
+    },
+    {
+        "merged": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/build/intermediates/res/merged/debug/drawable-hdpi-v4/richpush_btn_selector.xml",
+        "source": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/res/drawable-hdpi/richpush_btn_selector.xml"
+    },
+    {
+        "merged": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/build/intermediates/res/merged/debug/drawable-hdpi-v4/top_bg.9.png",
+        "source": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/res/drawable-hdpi/top_bg.9.png"
+    },
+    {
+        "merged": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/build/intermediates/res/merged/debug/drawable-hdpi-v4/stripes.png",
+        "source": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/res/drawable-hdpi/stripes.png"
+    },
+    {
+        "merged": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_richpush_actionbar_divider.png",
+        "source": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/res/drawable-hdpi/ic_richpush_actionbar_divider.png"
+    },
+    {
+        "merged": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_launcher.png",
+        "source": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/res/drawable-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/build/intermediates/res/merged/debug/drawable-hdpi-v4/bottom_bg.9.png",
+        "source": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/res/drawable-hdpi/bottom_bg.9.png"
+    },
+    {
+        "merged": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/build/intermediates/res/merged/debug/drawable-hdpi-v4/tiledstripes.xml",
+        "source": "/Users/dllo/Desktop/Github_project_space/anfeng_carHome/JiGuangDemo/JPushExample(461284)/res/drawable-hdpi/tiledstripes.xml"
+    }
+]
