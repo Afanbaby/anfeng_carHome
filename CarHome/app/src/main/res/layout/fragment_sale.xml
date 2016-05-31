@@ -10,9 +10,9 @@
 
         <TextView
             android:id="@+id/fragment_sale_tv"
-            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/five_dp"
             android:text="@string/find"
             android:textSize="@dimen/two_ten_sp" />
@@ -20,14 +20,16 @@
         <ImageView
             android:layout_width="@dimen/two_ten_dp"
             android:layout_height="@dimen/two_ten_dp"
-            android:layout_margin="@dimen/five_dp"
             android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/five_dp"
             android:src="@mipmap/sousou" />
     </RelativeLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/one_dp"
-        android:background="@color/colorBalck"/>
+        android:background="@color/colorBalck" />
+
     <ListView
         android:id="@+id/fragment_sale_lv"
         android:layout_width="match_parent"

@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.lanou3g.an.carhome.Collection;
 import com.lanou3g.an.carhome.R;
 import com.lanou3g.an.carhome.article.WebViewActivity;
 import com.lanou3g.an.carhome.beas.BaseFragment;
@@ -242,7 +243,7 @@ public class SaleFragment extends BaseFragment implements SwipeRefreshLoadingLay
                         //设置特惠热卖布局的数据
                         initSaleFiveData();
                         //设置精品的布局的数据
-                       // initSaleSixData();
+                        // initSaleSixData();
                         saleAdapter.setSaleBean(response);
                         listView.setAdapter(saleAdapter);
                     }
@@ -286,6 +287,7 @@ public class SaleFragment extends BaseFragment implements SwipeRefreshLoadingLay
 
     }
 
+    //设置第三个布局的数据
     private void initSaleThreeData() {
         List<ImageView> list = new ArrayList<>();
         list.add(threeIv1);
@@ -354,46 +356,11 @@ public class SaleFragment extends BaseFragment implements SwipeRefreshLoadingLay
         fiveIv2.setOnClickListener(this);
     }
 
-  /*  private void initSaleSixData() {
-        Picasso.with(context).load(saleFragmentBean.getResult().getModulelist().get(1).getList().get(0).getLogo()).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(sixIv1);
-        Picasso.with(context).load(saleFragmentBean.getResult().getModulelist().get(1).getList().get(1).getLogo()).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(sixIv2);
-        Picasso.with(context).load(saleFragmentBean.getResult().getModulelist().get(1).getList().get(2).getLogo()).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(sixIv3);
-        Picasso.with(context).load(saleFragmentBean.getResult().getModulelist().get(1).getList().get(3).getLogo()).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(sixIv4);
-
-        sixTitle1.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(0).getTitle());
-        sixTitle2.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(1).getTitle());
-        sixTitle3.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(2).getTitle());
-        sixTitle4.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(3).getTitle());
-
-        sixSmallTitle1.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(0).getShorttitle());
-        sixSmallTitle2.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(1).getShorttitle());
-        sixSmallTitle3.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(2).getShorttitle());
-        sixSmallTitle4.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(3).getShorttitle());
-
-        sixPrice1.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(0).getPrice());
-        sixPrice2.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(1).getPrice());
-        sixPrice3.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(2).getPrice());
-        sixPrice4.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(3).getPrice());
-        sixSmallPrice1.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-        sixSmallPrice2.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-        sixSmallPrice3.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-        sixSmallPrice4.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-        sixSmallPrice1.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(0).getFctprice());
-        sixSmallPrice2.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(1).getFctprice());
-        sixSmallPrice3.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(2).getFctprice());
-        sixSmallPrice4.setText(saleFragmentBean.getResult().getModulelist().get(1).getList().get(3).getFctprice());
-        sixIv1.setOnClickListener(this);
-        sixIv2.setOnClickListener(this);
-        sixIv3.setOnClickListener(this);
-        sixIv4.setOnClickListener(this);
-    }
-    */
-
     public void initViewImage() {
         dotViewList = new ArrayList<ImageView>();
         list = new ArrayList<ImageView>();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < saleFragmentImageBean.getResult().getList().size(); i++) {
             ImageView dotView = new ImageView(context);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(new ActionBar.LayoutParams(
                     ActionBar.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -415,7 +382,7 @@ public class SaleFragment extends BaseFragment implements SwipeRefreshLoadingLay
             //上面是动态添加了四个小圆点
         }
         //设置发现页面的轮播图
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < saleFragmentImageBean.getResult().getList().size(); i++) {
             String url = saleFragmentImageBean.getResult().getList().get(i).getImgurl();
             img = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
             Picasso.with(context).load(url).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(img);
@@ -455,107 +422,66 @@ public class SaleFragment extends BaseFragment implements SwipeRefreshLoadingLay
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.item_sale_three_iv1:
-                Intent intent1 = new Intent();
-                intent1.putExtra("url", saleFragmentCampaignBean.getResult().getImageads().getImageadsinfo().get(0).getUrl());
-                intent1.setClass(context, WebViewActivity.class);
-                startActivity(intent1);
+                jumpDetails(saleFragmentCampaignBean.getResult().getImageads().getImageadsinfo().get(0).getUrl());
                 break;
             case R.id.item_sale_three_iv2:
-                Intent intent2 = new Intent();
-                intent2.putExtra("url", saleFragmentCampaignBean.getResult().getImageads().getImageadsinfo().get(1).getUrl());
-                intent2.setClass(context, WebViewActivity.class);
-                startActivity(intent2);
+                jumpDetails(saleFragmentCampaignBean.getResult().getImageads().getImageadsinfo().get(1).getUrl());
                 break;
             case R.id.item_sale_three_iv3:
-                Intent intent3 = new Intent();
-                intent3.putExtra("url", saleFragmentCampaignBean.getResult().getImageads().getImageadsinfo().get(2).getUrl());
-                intent3.setClass(context, WebViewActivity.class);
-                startActivity(intent3);
+                jumpDetails(saleFragmentCampaignBean.getResult().getImageads().getImageadsinfo().get(2).getUrl());
                 break;
             case R.id.item_sale_four_iv1:
-                Intent intentFour1 = new Intent();
-                intentFour1.putExtra("url", saleFragmentCampaignBean.getResult().getBusinesslist().get(0).getUrl());
-                intentFour1.setClass(context, WebViewActivity.class);
-                startActivity(intentFour1);
+                jumpDetails(saleFragmentCampaignBean.getResult().getBusinesslist().get(0).getUrl());
                 break;
             case R.id.item_sale_four_iv2:
-                Intent intentFour2 = new Intent();
-                intentFour2.putExtra("url", saleFragmentCampaignBean.getResult().getBusinesslist().get(1).getUrl());
-                intentFour2.setClass(context, WebViewActivity.class);
-                startActivity(intentFour2);
+                jumpDetails(saleFragmentCampaignBean.getResult().getBusinesslist().get(1).getUrl());
                 break;
             case R.id.item_sale_four_iv3:
-                Intent intentFour3 = new Intent();
-                intentFour3.putExtra("url", saleFragmentCampaignBean.getResult().getBusinesslist().get(2).getUrl());
-                intentFour3.setClass(context, WebViewActivity.class);
-                startActivity(intentFour3);
+                jumpDetails(saleFragmentCampaignBean.getResult().getBusinesslist().get(2).getUrl());
                 break;
             case R.id.item_sale_four_iv4:
-                Intent intentFour4 = new Intent();
-                intentFour4.putExtra("url", saleFragmentCampaignBean.getResult().getBusinesslist().get(3).getUrl());
-                intentFour4.setClass(context, WebViewActivity.class);
-                startActivity(intentFour4);
+                jumpDetails(saleFragmentCampaignBean.getResult().getBusinesslist().get(3).getUrl());
                 break;
             case R.id.item_sale_four_iv5:
-                Intent intentFour5 = new Intent();
-                intentFour5.putExtra("url", saleFragmentCampaignBean.getResult().getBusinesslist().get(4).getUrl());
-                intentFour5.setClass(context, WebViewActivity.class);
-                startActivity(intentFour5);
+                jumpDetails(saleFragmentCampaignBean.getResult().getBusinesslist().get(4).getUrl());
                 break;
             case R.id.item_sale_four_iv6:
-                Intent intentFour6 = new Intent();
-                intentFour6.putExtra("url", saleFragmentCampaignBean.getResult().getBusinesslist().get(5).getUrl());
-                intentFour6.setClass(context, WebViewActivity.class);
-                startActivity(intentFour6);
+                jumpDetails(saleFragmentCampaignBean.getResult().getBusinesslist().get(5).getUrl());
                 break;
             //特惠热卖的点击事件
             case R.id.item_sale_five_one_iv:
-                Intent intentFive1 = new Intent();
-                intentFive1.putExtra("url", saleFragmentBean.getResult().getModulelist().get(0).getList().get(0).getMurl());
-                intentFive1.setClass(context, WebViewActivity.class);
-                startActivity(intentFive1);
+                jumpDetails(saleFragmentBean.getResult().getModulelist().get(0).getList().get(0).getMurl());
                 break;
             case R.id.item_sale_five_two_iv:
-                Intent intentFive2 = new Intent();
-                intentFive2.putExtra("url", saleFragmentBean.getResult().getModulelist().get(0).getList().get(1).getMurl());
-                intentFive2.setClass(context, WebViewActivity.class);
-                startActivity(intentFive2);
+                jumpDetails(saleFragmentBean.getResult().getModulelist().get(0).getList().get(1).getMurl());
                 break;
             //品牌精品的点击事件
             case R.id.item_sale_six_one_iv:
-                Intent intentSix1 = new Intent();
-                intentSix1.putExtra("url", saleFragmentBean.getResult().getModulelist().get(1).getList().get(0).getMurl());
-                intentSix1.setClass(context, WebViewActivity.class);
-                startActivity(intentSix1);
+                jumpDetails(saleFragmentBean.getResult().getModulelist().get(1).getList().get(0).getMurl());
                 break;
             case R.id.item_sale_six_two_iv:
-                Intent intentSix2 = new Intent();
-                intentSix2.putExtra("url", saleFragmentBean.getResult().getModulelist().get(1).getList().get(1).getMurl());
-                intentSix2.setClass(context, WebViewActivity.class);
-                startActivity(intentSix2);
+                jumpDetails(saleFragmentBean.getResult().getModulelist().get(1).getList().get(1).getMurl());
                 break;
             case R.id.item_sale_six_three_iv:
-                Intent intentSix3 = new Intent();
-                intentSix3.putExtra("url", saleFragmentBean.getResult().getModulelist().get(1).getList().get(2).getMurl());
-                intentSix3.setClass(context, WebViewActivity.class);
-                startActivity(intentSix3);
+                jumpDetails(saleFragmentBean.getResult().getModulelist().get(1).getList().get(2).getMurl());
                 break;
             case R.id.item_sale_six_four_iv:
-                Intent intentSix4 = new Intent();
-                intentSix4.putExtra("url", saleFragmentBean.getResult().getModulelist().get(1).getList().get(3).getMurl());
-                intentSix4.setClass(context, WebViewActivity.class);
-                startActivity(intentSix4);
+                jumpDetails(saleFragmentBean.getResult().getModulelist().get(1).getList().get(3).getMurl());
                 break;
             case R.id.item_sale_three_more:
-                Intent intentThreeMoreAct = new Intent();
-                intentThreeMoreAct.putExtra("url", saleFragmentCampaignBean.getResult().getImageads().getMoreactivitysurl());
-                intentThreeMoreAct.setClass(context, WebViewActivity.class);
-                startActivity(intentThreeMoreAct);
+                jumpDetails(saleFragmentCampaignBean.getResult().getImageads().getMoreactivitysurl());
                 break;
 
         }
     }
 
+    //跳转详情的方法
+    private void jumpDetails(String url) {
+        Intent intent = new Intent();
+        intent.putExtra("url", url);
+        intent.setClass(context, SaleWebViewActivity.class);
+        startActivity(intent);
+    }
 
     /**
      * 执行轮播图切换任务

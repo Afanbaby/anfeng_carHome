@@ -28,7 +28,7 @@ public class SaleWebViewActivity extends BaseActivity {
     @Override
     protected void initData() {
         Intent intent = getIntent();
-        //String url = intent.getStringExtra("sale_url");
-       // webView.loadUrl(url);
+        String url = intent.getStringExtra("url");
+        webView.loadUrl(url);
     }
 }

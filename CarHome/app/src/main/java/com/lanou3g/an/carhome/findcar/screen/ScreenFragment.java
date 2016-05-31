@@ -31,7 +31,7 @@ public class ScreenFragment extends BaseFragment implements View.OnClickListener
     private ImageView conditionIv;
     private TextView conditionTv;
     private int i = 0;
-    private PopupWindow popupWindow;
+    private MyPopupWindow myPopupWindow;
 
     @Override
     public int setLayout() {
@@ -48,7 +48,7 @@ public class ScreenFragment extends BaseFragment implements View.OnClickListener
         conditionLayout.setOnClickListener(this);
         conditionIv = bindView(R.id.fragment_screen_condition_iv);
         conditionTv = bindView(R.id.fragment_screen_condition_tv);
-
+        myPopupWindow = new MyPopupWindow(context);
     }
 
 
@@ -67,7 +67,6 @@ public class ScreenFragment extends BaseFragment implements View.OnClickListener
 
                     }
                 });
-        initPopup();
     }
 
     @Override
@@ -79,22 +78,16 @@ public class ScreenFragment extends BaseFragment implements View.OnClickListener
                 if (i % 2 != 0) {
                     conditionIv.setImageResource(R.mipmap.triangle_top);
                     conditionTv.setTextColor(Color.BLUE);
-                    popupWindow.showAsDropDown(conditionLayout);
+                    myPopupWindow.showAsDropDown(conditionLayout);
 
                 } else {
                     conditionIv.setImageResource(R.mipmap.triangle_down);
                     conditionTv.setTextColor(Color.BLACK);
-                    popupWindow.dismiss();
+                    myPopupWindow.dismiss();
                 }
                 break;
         }
     }
 
-    private void initPopup() {
-        //1.初始化popupWindow对象,通常在构造方法中进行宽高的设置
-        popupWindow = new PopupWindow(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        //2.给popupWindow一个view
-        View popupView = LayoutInflater.from(context).inflate(R.layout.item_popupwindow, null);
-        popupWindow.setContentView(popupView);
-    }
+
 }

@@ -85,6 +85,7 @@ public class NewestFragment extends BaseFragment implements View.OnClickListener
     @Override
     protected void initView() {
         pullToRefreshListView = bindView(R.id.item_newest_bom_lv);
+        //设置下拉
         pullToRefreshListView.setMode(PullToRefreshBase.Mode.BOTH);
         listView = pullToRefreshListView.getRefreshableView();
 
@@ -152,6 +153,11 @@ public class NewestFragment extends BaseFragment implements View.OnClickListener
                                         FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
                                 startLabels.setLastUpdatedLabel("最后更新时间:" + str);
                                 Toast.makeText(context, "刷新数据成功", Toast.LENGTH_SHORT).show();
+                                //轮播图的刷新
+                                dotLayout.removeAllViews();
+                                initViewImage();
+//                                CustomProgressDialog dialog =new CustomProgressDialog(context, "正在加载中",R.anim.frame);
+//                                dialog.show();
                             }
                         }, new Response.ErrorListener() {
                             @Override
@@ -159,6 +165,8 @@ public class NewestFragment extends BaseFragment implements View.OnClickListener
                                 Toast.makeText(context, "数据解析失败,请下拉刷新...", Toast.LENGTH_SHORT).show();
                             }
                         });
+
+
             }
 
             @Override
@@ -189,6 +197,10 @@ public class NewestFragment extends BaseFragment implements View.OnClickListener
                 String url = "";
                 int viewType = newestAdapter.getItemViewType(position - 2);
                 switch (viewType) {
+                    case 1:
+                        url = "http://cont.app.autohome.com.cn/autov5.0.0/content/news/newscontent-n" +
+                                newestBean.getResult().getNewslist().get(position - 2).getId() + "-t0.json";
+                        break;
                     case 3://视频
                         url = "http://v.autohome.com.cn/v_4_" + newestBean.getResult().getNewslist().get(position - 2).getId() + ".html";
                         break;
@@ -223,7 +235,7 @@ public class NewestFragment extends BaseFragment implements View.OnClickListener
         dotViewList = new ArrayList<ImageView>();
         list = new ArrayList<ImageView>();
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < newestBean.getResult().getFocusimg().size(); i++) {
             ImageView dotView = new ImageView(context);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(new ActionBar.LayoutParams(
                     ActionBar.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -246,7 +258,7 @@ public class NewestFragment extends BaseFragment implements View.OnClickListener
         }
 
         //设置轮播图的图片
-        for (int i = 0; i <= 5; i++) {
+        for (int i = 0; i < newestBean.getResult().getFocusimg().size(); i++) {
             String url = newestBean.getResult().getFocusimg().get(i).getImgurl();
             ImageView img = (ImageView) inflater.inflate(R.layout.scroll_vew_item, null);
             img.setOnClickListener(this);

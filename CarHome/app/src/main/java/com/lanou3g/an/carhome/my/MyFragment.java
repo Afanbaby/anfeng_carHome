@@ -1,25 +1,17 @@
 package com.lanou3g.an.carhome.my;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.lanou3g.an.carhome.Collection;
-import com.lanou3g.an.carhome.CollectionDao;
 import com.lanou3g.an.carhome.R;
-import com.lanou3g.an.carhome.article.GreendaoSingle;
 import com.lanou3g.an.carhome.beas.BaseFragment;
-import com.lanou3g.an.carhome.main.MainActivity;
 import com.lanou3g.an.carhome.my.login.LoginActivity;
 import com.lanou3g.an.carhome.my.myCollection.MyCollectionActivity;
 import com.lanou3g.an.carhome.utils.ThemeChangeUtil;
-
-import java.util.List;
 
 /**
  * Created by anfeng on 16/5/9.
@@ -28,7 +20,6 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
 
     private ImageView nightIv;
     private int i = 0;
-    private LinearLayout collectionLayout, accountNumberLayout;
 
     @Override
     public int setLayout() {
@@ -39,11 +30,6 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
     protected void initView() {
         nightIv = bindView(R.id.my_include_night);
         nightIv.setOnClickListener(this);
-        collectionLayout = bindView(R.id.my_collection_linear);
-        collectionLayout.setOnClickListener(this);
-        //账号登录的点击事件
-        accountNumberLayout = bindView(R.id.fragment_my_link_man);
-        accountNumberLayout.setOnClickListener(this);
     }
 
 
@@ -70,18 +56,30 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 }
                 //重新创建当前的Activity的实例
                 getActivity().recreate();
-                break;
-            case R.id.my_collection_linear:
-                Intent intent = new Intent();
-                intent.setClass(context, MyCollectionActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.fragment_my_link_man:
-                Intent loginIntent = new Intent();
-                loginIntent.setClass(context, LoginActivity.class);
-                startActivity(loginIntent);
+                //  MyApplication.changeTTT();
                 break;
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        i++;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (i == 1) {
+            FragmentManager manager = getChildFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.fragment_my_frameLayout, new LoginAfterFragment());
+            transaction.commit();
+        } else {
+            FragmentManager manager = getChildFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.fragment_my_frameLayout, new LoginBeforeFragment());
+            transaction.commit();
+        }
+    }
 }

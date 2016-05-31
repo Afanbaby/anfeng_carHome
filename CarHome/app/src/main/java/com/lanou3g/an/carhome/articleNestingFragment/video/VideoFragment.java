@@ -32,7 +32,6 @@ public class VideoFragment extends BaseFragment implements VideoAdapter.OnClickL
     private VideoAdapter videoAdapter;
     private LinearLayout linearLayoutAll;
     private static final String CLOSE_DRAWER = "com.lanou3g.an.carhome.CLOSEBROADCAST";
-    private GetNameBroadcast getNameBroadcast;
     private TextView allTv;
     private VideoBean videoBean;
 
@@ -50,11 +49,6 @@ public class VideoFragment extends BaseFragment implements VideoAdapter.OnClickL
         linearLayoutAll = bindView(R.id.fragment_video_all_linearlayout);
         linearLayoutAll.setOnClickListener(this);
         allTv = bindView(R.id.fragment_video_all);
-        //动态注册广播
-        getNameBroadcast = new GetNameBroadcast();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction("com.lanou3g.an.carhome.TYPENAME");
-        context.registerReceiver(getNameBroadcast, filter);
     }
 
     @Override
@@ -102,24 +96,5 @@ public class VideoFragment extends BaseFragment implements VideoAdapter.OnClickL
                 context.sendBroadcast(intent);
                 break;
         }
-    }
-
-    //当接收到广播的时候
-    class GetNameBroadcast extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String name = intent.getStringExtra("name");
-            int nameType = intent.getIntExtra("nameType", 0);
-            if (nameType == 3) {
-                allTv.setText(name);
-            }
-
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        context.unregisterReceiver(getNameBroadcast);
     }
 }

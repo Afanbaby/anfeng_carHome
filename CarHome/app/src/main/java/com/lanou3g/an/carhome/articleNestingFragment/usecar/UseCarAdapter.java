@@ -6,6 +6,7 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,15 +17,11 @@ import it.sephiroth.android.library.picasso.Picasso;
 /**
  * Created by anfeng on 16/5/14.
  */
-public class UseCarAdapter extends RecyclerView.Adapter {
+public class UseCarAdapter extends BaseAdapter {
 
     private Context context;
     private UseCarBean useCarBean;
-    private OnClickListener onClickListener;
 
-    public void setOnClickListener(OnClickListener onClickListener) {
-        this.onClickListener = onClickListener;
-    }
 
     public UseCarAdapter(Context context) {
         this.context = context;
@@ -36,40 +33,69 @@ public class UseCarAdapter extends RecyclerView.Adapter {
     }
 
     @Override
+    public int getViewTypeCount() {
+        return 11;
+    }
+
+    @Override
     public int getItemViewType(int position) {
         return useCarBean.getResult().getNewslist().get(position).getMediatype();
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder myViewHolder = null;
-        switch (viewType) {
-            case 0:
-                View myView = LayoutInflater.from(context).inflate(R.layout.item_usecar, null);
-                myViewHolder = new OneViewHolder(myView);
-                break;
-            case 10:
-                View twoView = LayoutInflater.from(context).inflate(R.layout.item_uaecar_three, null);
-                myViewHolder = new TwoViewHolder(twoView);
-                break;
-        }
-
-        return myViewHolder;
+    public int getCount() {
+        return useCarBean != null ? useCarBean.getResult().getNewslist().size() : 0;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        int type = getItemViewType(position);
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        OneViewHolder oneViewHolder = null;
+        TwoViewHolder twoViewHolder = null;
+        int type = useCarBean.getResult().getNewslist().get(position).getMediatype();
+
+        if (convertView == null) {
+            switch (type) {
+                case 0:
+                    convertView = LayoutInflater.from(context).inflate(R.layout.item_usecar, parent, false);
+                    oneViewHolder = new OneViewHolder(convertView);
+                    convertView.setTag(oneViewHolder);
+                    break;
+                case 10:
+                    convertView = LayoutInflater.from(context).inflate(R.layout.item_uaecar_three, parent, false);
+                    twoViewHolder = new TwoViewHolder(convertView);
+                    convertView.setTag(twoViewHolder);
+                    break;
+            }
+        } else {
+            switch (type) {
+                case 0:
+                    oneViewHolder = (OneViewHolder) convertView.getTag();
+                    break;
+                case 10:
+                    twoViewHolder = (TwoViewHolder) convertView.getTag();
+                    break;
+            }
+        }
         switch (type) {
             case 0:
-                OneViewHolder oneViewHolder = (OneViewHolder) holder;
+                //设置数据
                 getIntentData(oneViewHolder.usecarIv, useCarBean.getResult().getNewslist().get(position).getSmallpic());
                 oneViewHolder.usecarTitle.setText(useCarBean.getResult().getNewslist().get(position).getTitle());
                 oneViewHolder.usecarTime.setText(useCarBean.getResult().getNewslist().get(position).getTime());
                 oneViewHolder.usecarNumber.setText(useCarBean.getResult().getNewslist().get(position).getReplycount() + "评论");
                 break;
             case 10:
-                TwoViewHolder twoViewHolder = (TwoViewHolder) holder;
+                //设置数据
                 String intentUrl = useCarBean.getResult().getNewslist().get(position).getIndexdetail();
                 String[] s = intentUrl.split("㊣");
                 getIntentData(twoViewHolder.useCarThreeOneIV, s[0]);
@@ -81,23 +107,7 @@ public class UseCarAdapter extends RecyclerView.Adapter {
                 break;
         }
 
-        if (onClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int id = useCarBean.getResult().getNewslist().get(position).getId();
-                    int type = useCarBean.getResult().getNewslist().get(position).getMediatype();
-                    onClickListener.onClick(id, type, position);
-                }
-            });
-        }
-
-    }
-
-
-    @Override
-    public int getItemCount() {
-        return useCarBean != null ? useCarBean.getResult().getNewslist().size() : 0;
+        return convertView;
     }
 
     class OneViewHolder extends RecyclerView.ViewHolder {
@@ -132,7 +142,5 @@ public class UseCarAdapter extends RecyclerView.Adapter {
         Picasso.with(context).load(url).placeholder(R.mipmap.fild).error(R.mipmap.fild).into(view);
     }
 
-    interface OnClickListener {
-        void onClick(int id, int type, int position);
-    }
+
 }

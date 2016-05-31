@@ -56,45 +56,12 @@ public class NewestAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        SeeThreeViewHolder seeThreeViewHolder = null;
-        SeeTwoViewHolder seeTwoViewHolder = null;
+
         SeeSixViewHolder seeSixViewHolder = null;
-        SeeOneViewHolder seeOneViewHolder = null;
-        SeeFiveViewholder seeFiveViewholder = null;
+        CurrencyViewholder currencyViewholder = null;
 
         int type = newestBean.getResult().getNewslist().get(position).getMediatype();
-        if (type == 3) {
-            if (convertView == null) {
-                convertView = inflater.inflate(R.layout.item_newest_three_layouts, parent, false);
-                seeThreeViewHolder = new SeeThreeViewHolder(convertView);
-                convertView.setTag(seeThreeViewHolder);
-            } else {
-                seeThreeViewHolder = (SeeThreeViewHolder) convertView.getTag();
-            }
-            //设置数据
-            getIntentData(newestBean.getResult().getNewslist().get(position).getSmallpic(), seeThreeViewHolder.seeThreeIv);
-            seeThreeViewHolder.seeThreetitleTv.setText(newestBean.getResult().getNewslist().get(position).getTitle());
-            seeThreeViewHolder.seeThreetimeTv.setText(newestBean.getResult().getNewslist().get(position).getTime());
-            seeThreeViewHolder.seeThreefrequencyTv.setText(newestBean.getResult().getNewslist().get(position).getReplycount() + "播放");
-
-
-        } else if (type == 2) {
-            if (convertView == null) {
-                convertView = inflater.inflate(R.layout.item_newest_two_layouts, parent, false);
-                seeTwoViewHolder = new SeeTwoViewHolder(convertView);
-                convertView.setTag(seeTwoViewHolder);
-            } else {
-                seeTwoViewHolder = (SeeTwoViewHolder) convertView.getTag();
-            }
-            //设置数据
-            getIntentData(newestBean.getResult().getNewslist().get(position).getSmallpic(), seeTwoViewHolder.seeTwoIv);
-            seeTwoViewHolder.seeTwotitleTv.setText(newestBean.getResult().getNewslist().get(position).getTitle());
-            //根据id需要获取到中偏下的标签
-            //seeTwoViewHolder.seeTwotypeName.setText(newestBean.getResult().getNewslist().get(position).getJumppage());
-            seeTwoViewHolder.seeTwotimeTv.setText(newestBean.getResult().getNewslist().get(position).getTime());
-            seeTwoViewHolder.seeTwofrequencyTv.setText(newestBean.getResult().getNewslist().get(position).getReplycount() + "评论");
-
-        } else if (type == 6) {
+        if (type == 6) {
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.item_newest_six_layouts, parent, false);
                 seeSixViewHolder = new SeeSixViewHolder(convertView);
@@ -116,63 +83,33 @@ public class NewestAdapter extends BaseAdapter {
             seeSixViewHolder.seeSixTitle.setText(newestBean.getResult().getNewslist().get(position).getTitle());
             seeSixViewHolder.seeSixTime.setText(newestBean.getResult().getNewslist().get(position).getTime());
             seeSixViewHolder.seeSixNumber.setText(newestBean.getResult().getNewslist().get(position).getReplycount() + "图片");
-
-        } else if (type == 1) {
-            if (convertView == null) {
-                convertView = inflater.inflate(R.layout.item_newest_one_layouts, parent, false);
-                seeOneViewHolder = new SeeOneViewHolder(convertView);
-                convertView.setTag(seeOneViewHolder);
-            } else {
-                seeOneViewHolder = (SeeOneViewHolder) convertView.getTag();
-            }
-            //设置数据
-            getIntentData(newestBean.getResult().getNewslist().get(position).getSmallpic(), seeOneViewHolder.seeOneIv);
-            seeOneViewHolder.seeOneTitle.setText(newestBean.getResult().getNewslist().get(position).getTitle());
-            seeOneViewHolder.seeOneTime.setText(newestBean.getResult().getNewslist().get(position).getTime());
-            seeOneViewHolder.seeOneNumber.setText(newestBean.getResult().getNewslist().get(position).getReplycount() + "评论");
-
-        } else if (type == 5) {
+        } else {
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.item_newest_five_layouts, parent, false);
-                seeFiveViewholder = new SeeFiveViewholder(convertView);
-                convertView.setTag(seeFiveViewholder);
+                currencyViewholder = new CurrencyViewholder(convertView);
+                convertView.setTag(currencyViewholder);
             } else {
-                seeFiveViewholder = (SeeFiveViewholder) convertView.getTag();
+                currencyViewholder = (CurrencyViewholder) convertView.getTag();
             }
             //设置数据
-            getIntentData(newestBean.getResult().getNewslist().get(position).getSmallpic(), seeFiveViewholder.seeFiveIv);
-            seeFiveViewholder.seeFiveTitle.setText(newestBean.getResult().getNewslist().get(position).getTitle());
-            seeFiveViewholder.seeFiveTime.setText(newestBean.getResult().getNewslist().get(position).getTime());
-            seeFiveViewholder.seeFiveNumber.setText(newestBean.getResult().getNewslist().get(position).getReplycount() + "回帖");
+            getIntentData(newestBean.getResult().getNewslist().get(position).getSmallpic(), currencyViewholder.currencyFiveIv);
+            currencyViewholder.currencyTitle.setText(newestBean.getResult().getNewslist().get(position).getTitle());
+            currencyViewholder.currencyTime.setText(newestBean.getResult().getNewslist().get(position).getTime());
+            if (type == 3) {
+                currencyViewholder.currencyNumber.setText(newestBean.getResult().getNewslist().get(position).getReplycount() + "播放");
+            } else if (type == 1) {
+                currencyViewholder.currencyNumber.setText(newestBean.getResult().getNewslist().get(position).getReplycount() + "评论");
+            } else if (type == 5) {
+                currencyViewholder.currencyNumber.setText(newestBean.getResult().getNewslist().get(position).getReplycount() + "回帖");
+            } else if (type == 2) {
+                currencyViewholder.currencyNumber.setText(newestBean.getResult().getNewslist().get(position).getReplycount() + "评论");
+            } else {
+                return null;
+            }
         }
         return convertView;
     }
 
-    //一个布局(一张图片的,type = 3)
-    class SeeThreeViewHolder {
-        private ImageView seeThreeIv;
-        private TextView seeThreetitleTv, seeThreetimeTv, seeThreefrequencyTv;
-
-        public SeeThreeViewHolder(View itemView) {
-            seeThreeIv = (ImageView) itemView.findViewById(R.id.item_newest_three_iv);
-            seeThreetitleTv = (TextView) itemView.findViewById(R.id.item_newest_three_title);
-            seeThreetimeTv = (TextView) itemView.findViewById(R.id.item_newest_three_time);
-            seeThreefrequencyTv = (TextView) itemView.findViewById(R.id.item_newest_three_frequency);
-        }
-    }
-
-    class SeeTwoViewHolder {
-        private ImageView seeTwoIv;
-        private TextView seeTwotitleTv, seeTwotimeTv, seeTwofrequencyTv, seeTwotypeName;
-
-        public SeeTwoViewHolder(View itemView) {
-            seeTwoIv = (ImageView) itemView.findViewById(R.id.item_newest_two_iv);
-            seeTwotitleTv = (TextView) itemView.findViewById(R.id.item_newest_two_title);
-            seeTwotimeTv = (TextView) itemView.findViewById(R.id.item_newest_two_time);
-            seeTwotypeName = (TextView) itemView.findViewById(R.id.item_newest_two_typename);
-            seeTwofrequencyTv = (TextView) itemView.findViewById(R.id.item_newest_two_number);
-        }
-    }
 
     class SeeSixViewHolder {
         private TextView seeSixTitle, seeSixTime, seeSixNumber;
@@ -188,27 +125,16 @@ public class NewestAdapter extends BaseAdapter {
         }
     }
 
-    class SeeOneViewHolder {
-        private TextView seeOneTitle, seeOneTime, seeOneNumber;
-        private ImageView seeOneIv;
 
-        public SeeOneViewHolder(View itemView) {
-            seeOneIv = (ImageView) itemView.findViewById(R.id.item_newest_one_iv);
-            seeOneTitle = (TextView) itemView.findViewById(R.id.item_newest_one_title);
-            seeOneTime = (TextView) itemView.findViewById(R.id.item_newest_one_time);
-            seeOneNumber = (TextView) itemView.findViewById(R.id.item_newest_one_number);
-        }
-    }
+    class CurrencyViewholder {
+        private TextView currencyTitle, currencyTime, currencyNumber;
+        private ImageView currencyFiveIv;
 
-    class SeeFiveViewholder {
-        private TextView seeFiveTitle, seeFiveTime, seeFiveNumber;
-        private ImageView seeFiveIv;
-
-        public SeeFiveViewholder(View itemView) {
-            seeFiveTitle = (TextView) itemView.findViewById(R.id.item_newest_five_title);
-            seeFiveTime = (TextView) itemView.findViewById(R.id.item_newest_five_time);
-            seeFiveNumber = (TextView) itemView.findViewById(R.id.item_newest_five_number);
-            seeFiveIv = (ImageView) itemView.findViewById(R.id.item_newest_five_iv);
+        public CurrencyViewholder(View itemView) {
+            currencyTitle = (TextView) itemView.findViewById(R.id.item_newest_five_title);
+            currencyTime = (TextView) itemView.findViewById(R.id.item_newest_five_time);
+            currencyNumber = (TextView) itemView.findViewById(R.id.item_newest_five_number);
+            currencyFiveIv = (ImageView) itemView.findViewById(R.id.item_newest_five_iv);
         }
     }
 

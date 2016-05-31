@@ -36,6 +36,7 @@
                 android:layout_below="@id/item_price_title_tv"
                 android:layout_marginLeft="@dimen/five_dp"
                 android:layout_marginTop="@dimen/two_ten_dp"
+                android:textColor="@color/colorRed"
                 android:layout_toRightOf="@id/item_price_iv"
                 android:text="@string/test_text" />
 
@@ -80,7 +81,7 @@
             android:id="@+id/item_deprecite_company"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/ten_dp"
+            android:layout_marginLeft="@dimen/five_dp"
             android:text="@string/test_text" />
 
         <TextView
@@ -95,6 +96,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ten_dp"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:text="@string/test_text" />
     </LinearLayout>
 

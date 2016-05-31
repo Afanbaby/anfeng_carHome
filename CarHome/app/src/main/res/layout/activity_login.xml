@@ -50,6 +50,7 @@
         android:background="@color/color_gray_one" />
 
     <EditText
+        android:id="@+id/activity_login_user_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/ten_dp"
@@ -68,7 +69,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/ten_dp"
         android:background="@null"
-        android:hint="@string/passwork" />
+        android:hint="@string/passwork"
+        android:inputType="number" />
 
     <TextView
         android:layout_width="match_parent"
@@ -76,11 +78,12 @@
         android:background="@color/color_gray_one" />
 
     <Button
+        android:id="@+id/activity_login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/two_ten_dp"
         android:background="@color/colorBule"
-        android:text="@string/register"
+        android:text="@string/login"
         android:textColor="@color/colorWhilt"
         android:textSize="@dimen/two_ten_dp" />
 
@@ -125,9 +128,9 @@
 
     <!--三个其他的登录方式-->
     <LinearLayout
-        android:layout_marginTop="@dimen/two_ten_dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/two_ten_dp"
         android:orientation="horizontal">
         <!--1-->
         <LinearLayout

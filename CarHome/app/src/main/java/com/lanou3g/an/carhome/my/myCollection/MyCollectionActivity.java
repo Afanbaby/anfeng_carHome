@@ -57,11 +57,7 @@ public class MyCollectionActivity extends BaseActivity implements View.OnClickLi
                 Long cId = collectionList.get(position).getId();
                 String cTitle = collectionList.get(position).getTitle();
                 String cImageUrl = collectionList.get(position).getImageUrl();
-                Collection collection = new Collection();
-                collection.setId(cId);
-                collection.setTitle(cTitle);
-                collection.setUrl(cUrl);
-                collection.setImageUrl(cImageUrl);
+                Collection collection = new Collection(cId, cTitle, cUrl, cImageUrl);
 
                 Intent intent = new Intent();
                 intent.putExtra("url", cUrl);
@@ -91,9 +87,26 @@ public class MyCollectionActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onRestart() {
         super.onRestart();
+        //当上一个页面finish后,需要再插叙一次数据库,将最新的数据拿出来,并加入到adapter上
         CollectionDao collectionDao2 = GreendaoSingle.getInstance().getCollectionDao();
-        List<Collection> collectionList2 = collectionDao2.queryBuilder().list();
-        Log.d("MyCollectionActivity", "collectionDao2:" + collectionList2.size());
+        final List<Collection> collectionList2 = collectionDao2.queryBuilder().list();
+        //重新给ListView设置每一条的点击事件
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String cUrl = collectionList2.get(position).getUrl();
+                Long cId = collectionList2.get(position).getId();
+                String cTitle = collectionList2.get(position).getTitle();
+                String cImageUrl = collectionList2.get(position).getImageUrl();
+                Collection collection = new Collection(cId, cTitle, cUrl, cImageUrl);
+                Intent intent = new Intent();
+                intent.putExtra("url", cUrl);
+                intent.putExtra("Collection", collection);
+                intent.setClass(getApplication(), WebViewActivity.class);
+                startActivity(intent);
+            }
+        });
+        //将数据传给adapter
         myCollectionAdapter.setCollectionList(collectionList2);
         listView.setAdapter(myCollectionAdapter);
     }

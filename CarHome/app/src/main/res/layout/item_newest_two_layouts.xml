@@ -19,24 +19,15 @@
         android:layout_toRightOf="@id/item_newest_two_iv"
         android:text="@string/test_text" />
 
-    <TextView
-        android:id="@+id/item_newest_two_typename"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/item_newest_two_title"
-        android:layout_marginLeft="@dimen/ten_dp"
-        android:layout_toRightOf="@id/item_newest_two_iv"
-        android:text="@string/test_text" />
 
     <TextView
         android:id="@+id/item_newest_two_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_below="@id/item_newest_two_title"
-        android:layout_marginLeft="@dimen/two_dp"
-        android:layout_toRightOf="@id/item_newest_two_typename"
+        android:layout_marginLeft="@dimen/ten_dp"
+        android:layout_marginTop="@dimen/two_ten_dp"
+        android:layout_toRightOf="@id/item_newest_two_iv"
         android:text="@string/test_text" />
 
 

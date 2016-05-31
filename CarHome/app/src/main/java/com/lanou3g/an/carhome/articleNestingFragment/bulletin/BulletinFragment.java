@@ -43,6 +43,7 @@ public class BulletinFragment extends BaseFragment implements BulletinAdapter.On
     private RecyclerView recyclerView;
     private BulletinAdapter bulletinAdapter;
     private LinearLayout layoutBrand, layoutCategory;
+    //关抽屉的广播
     private static final String CLOSE_DRAWER = "com.lanou3g.an.carhome.CLOSEBROADCAST";
     private TextView allBrand, allGrade;
 
@@ -97,11 +98,13 @@ public class BulletinFragment extends BaseFragment implements BulletinAdapter.On
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            //点击全部品牌
             case R.id.fragment_bulletin_brand:
                 Intent intent = new Intent(CLOSE_DRAWER);
                 intent.putExtra("type", 1);
                 context.sendBroadcast(intent);
                 break;
+            //点击全部级别
             case R.id.fragment_bulletin_category:
                 Intent intent1 = new Intent(CLOSE_DRAWER);
                 intent1.putExtra("type", 2);

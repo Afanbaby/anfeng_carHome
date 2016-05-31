@@ -40,6 +40,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private RadioButton articleRb, forumRb, findcarRb, saleRb, myRb;
     private DrawerLayout drawerLayout;
+    //关抽屉的广播
     private static final String CLOSE_DRAWER = "com.lanou3g.an.carhome.CLOSEBROADCAST";
     private CloseDrawer closeDrawer;
     private TextView closeTv, nameTv;
@@ -68,20 +69,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         nameTv = bindView(R.id.main_name_text);
         mainAdapter = new MainAdapter(this);
         drawerLayout = bindView(R.id.main_drawer_layout);
-//        //将首页作为进入的界面
-//        manager = getSupportFragmentManager();
-//        if (ThemeChangeUtil.isChange == false) {
-//            FragmentTransaction transaction = manager.beginTransaction();
-//            transaction.replace(R.id.replace_view, new ArticleFragment());
-//            transaction.commit();
-//        } else {
-//            FragmentTransaction transaction = manager.beginTransaction();
-//            transaction.replace(R.id.replace_view, new MyFragment());
-//            transaction.commit();
-//        }
-        registerMessageReceiver();  // used for receive msg
 
-
+        registerMessageReceiver();  // used for receive msg 极光推送
     }
 
     @Override
@@ -152,31 +141,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 .commit();
 
     }
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                MainAdapter.ViewHolder viewHolder = (MainAdapter.ViewHolder) view.getTag();
-//                viewHolder.typeImage.setVisibility(View.VISIBLE);
-//                viewHolder.typeName.setTextColor(Color.BLUE);
-//                drawerLayout.closeDrawer(Gravity.RIGHT);
-//                //发广播
-//                Intent intent = new Intent("com.lanou3g.an.carhome.TYPENAME");
-//                if (type == 1) {
-//                    intent.putExtra("nameType", 1);
-//                    intent.putExtra("name", array[position]);
-//                } else if (type == 2) {
-//                    intent.putExtra("nameType", 2);
-//                    intent.putExtra("name", arrayGrade[position]);
-//                } else if (type == 3) {
-//                    intent.putExtra("nameType", 3);
-//                    intent.putExtra("name", arrayVideo[position]);
-//                } else if (type == 4) {
-//                    intent.putExtra("nameType", 4);
-//                    intent.putExtra("name", arrayLocation[position]);
-//                }
-//                sendBroadcast(intent);
-//            }
-//        });
+
 
     /************/
 
@@ -230,12 +195,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-
     //当点击redioButton时,切换fragment
     @Override
     public void onClick(View v) {
-//        FragmentManager manager = getSupportFragmentManager();
-//        FragmentTransaction transaction = manager.beginTransaction();
         switch (v.getId()) {
             case R.id.article_page:
                 changeFragment(0);
@@ -259,7 +221,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //        transaction.commit();
     }
 
-    private void changeFragment(int positon) {
+    public void changeFragment(int positon) {
         manager.beginTransaction()
                 .hide(fragmentList.get(0))
                 .hide(fragmentList.get(1))

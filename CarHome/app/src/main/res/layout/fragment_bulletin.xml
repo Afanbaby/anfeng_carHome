@@ -65,16 +65,12 @@
         android:layout_height="@dimen/one_dp"
         android:background="@color/colorBalck" />
 
-    <com.lanou3g.an.carhome.utils.SwipeRefreshLoadingLayout
-        android:id="@+id/srff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/fragment_bulletin_rv"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zoo_dp"
-            android:layout_weight="1" />
-    </com.lanou3g.an.carhome.utils.SwipeRefreshLoadingLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_bulletin_rv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zoo_dp"
+        android:layout_weight="1" />
+
 
 </LinearLayout>

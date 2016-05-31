@@ -16,6 +16,8 @@ import de.greenrobot.event.EventBus;
 
 /**
  * Created by anfeng on 16/5/9.
+ *  找车的降价
+ *
  */
 public class DepreciateFragment extends BaseFragment implements View.OnClickListener {
     private TextView brandTv, priceTv, levelTv, sortTv;
